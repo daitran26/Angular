@@ -1,0 +1,65 @@
+<mat-card>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8">
+        <h2 class="text-center">THÊM SẢN PHẨM</h2>
+        <form #formAdd="ngForm" (ngSubmit)="formAdd.valid && save(formAdd.value)"> <!-- formAdd.valid && -->
+            <div class="form-group">
+                <label for="exampleInputEmail1">Tên sản phẩm</label>
+                <input type="text" class="form-control" minlength = "4" #name="ngModel" name="name" ngModel required>
+                <div *ngIf="name.errors && (name.dirty || name.touched)" class="text-danger">
+                    <div *ngIf="name.errors?.['required']">
+                        Tên không được để trống.
+                      </div>
+                      <div *ngIf="name.errors?.['minlength']">
+                        Tên phải có ít nhất 4 kí tự
+                      </div>
+                </div>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlFile1">Ảnh sản phẩm</label>
+              <input type="file" class="form-control-file" id="exampleFormControlFile1" (change)="onFileChange($event)" name="image" #image="ngModel" ngModel required>
+              <div *ngIf="downloadUrl">
+                <img src="{{downloadUrl}}" style="width:100px" />
+              </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Giá</label>
+                <input type="text" class="form-control" #price = "ngModel" name="price" ngModel required>
+                <div *ngIf="price.errors && (price.dirty || price.touched)" class="text-danger">
+                  <div *ngIf="price.errors?.['required']">
+                      Giá không được để trống.
+                    </div>
+              </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Tiêu đề</label>
+                <input type="text" class="form-control" name="title" ngModel #title = "ngModel" required>
+                <div *ngIf="title.errors && (title.dirty || title.touched)" class="text-danger">
+                  <div *ngIf="title.errors?.['required']">
+                    Tiêu đề không được để trống.
+                    </div>
+              </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Mô tả</label>
+                <!-- <input type="text" class="form-control" name="description" ngModel> -->
+                <textarea class="form-control" id="exampleFormControlTextarea1" #description = "ngModel" required rows="3" name="description" ngModel></textarea>
+                <div *ngIf="description.errors && (description.dirty || description.touched)" class="text-danger">
+                  <div *ngIf="description.errors?.['required']">
+                    Mô tả không được để trống.
+                    </div>
+              </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Danh mục sản phẩm</label>
+                <select name="category" style="padding:7px;width:250px;border-radius: 4px;margin-left: 16px;" [(ngModel)]="categoryId" (change)="onChange()" required>
+                    <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-success btn-lg mt-4">Thêm sản phẩm</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</mat-card>

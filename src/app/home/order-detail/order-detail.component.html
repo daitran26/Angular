@@ -1,0 +1,29 @@
+<h1 class="display-4 mb-5">Order Detail</h1>
+<table class="table table-striped text-center">
+    <thead>
+    <tr>
+        <th scope="col">Photo</th>
+        <th scope="col">Name</th>
+        <th scope="col">Title</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Subtotal</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of (order$ | async)?.products">
+        <th class="align-middle" scope="row">
+            <a routerLink="/seller/product/{{item.productId}}/edit"><img height="100px" src="{{item.image}}"
+                                                                         alt="{{item.name}}"></a>
+        </th>
+        <td class="align-middle"><a routerLink="/seller/product/{{item.id}}/edit">{{item.name}}</a></td>
+        <td class="align-middle">{{item.title}}</td>
+        <td class="align-middle">{{item.price | currency:'VND'}}</td>
+        <td class="align-middle">{{item.count}}</td>
+        <td class="align-middle" style="font-size: 14px;font-weight: bold;color: rgb(97, 96, 96)">{{(item.price * item.count | currency:'VND')}}</td>
+    </tr>
+    </tbody>
+</table>
+<a routerLink="/order" class="btn btn-outline-success btn-lg float-left" style="font-size: 15px;"><i class="fas fa-long-arrow-alt-left mr-3"></i>Quay lại</a>
+<h5 style="display: inline;font-size: 16px;font-weight: bold;color: rgb(0, 0, 0);margin-right: 20px;" class="float-right mt-4">Total: {{(order$ | async)?.orderAmount | currency:'VND'}}</h5>

@@ -1,0 +1,168 @@
+<div class="row">
+  <div class="col-xs-12 col-md-3">
+    <div class="row" style="margin-bottom: 5px;">
+      <div class="col-md-12"><iframe src="https://www.youtube.com/embed/KzHaGH1cOx4" title="YouTube video player" frameborder="0" class="img-thumbnail" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+    </div>
+    <div class="row" style="margin-bottom: 5px;height:100px">
+      <div class="col-md-12"><img src="https://msmobile.com.vn/images/banners/compress/redmi-note-9s_1605706094.png" class="img-thumbnail" style="height:130px;"></div>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <!-- slide -->
+    <div class="owl-slider">
+      <div class="item">
+        <!-- ============================ -->
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+          <!-- Indicators -->
+          <ol class="carousel-indicators" style="background-color:#0183bf99; width: 100px;padding:6px 7px;border-radius: 10px;margin-left: 50%;transform:translateX(-50%)">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+          </ol>
+
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+            <div class="item active"> <img src="https://msmobile.com.vn/images/slideshow/2020/11/16/compress/normal-note20_1605542278.png" alt="Los Angeles"> </div>
+            <div class="item"> <img src="https://msmobile.com.vn/images/slideshow/2021/11/29/compress/146517901_236305711409820_24497348972374134_n_1638183617.jpg" alt="Los Angeles"> </div>
+            <div class="item"> <img src="https://msmobile.com.vn/images/slideshow/2022/01/13/compress/anhbixiaomi_1642055221.png" alt="Chicago"> </div>
+            <div class="item"> <img src="https://msmobile.com.vn/images/slideshow/2022/01/13/compress/anhbiadienthoai_1642053110.png" alt="New York"> </div>
+          </div>
+        </div>
+        <!-- ============================ -->
+      </div>
+    </div>
+    <!-- end slide -->
+  </div>
+</div>
+<div class="col-xs-12 col-md-12">
+  <!-- main -->
+
+  <div class="special-collection">
+    <div class="tabs-container">
+      <div class="row" style="margin-top:10px;">
+        <div class="col-lg-10 mt-5">
+          <h2>HOT PRODUCT</h2>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <div class="tabs-content row">
+      <div id="content-tabb1" class="content-tab content-tab-proindex">
+        <div class="clearfix">
+          <!-- box product -->
+          <div class="col-xs-6 col-md-3 col-sm-6 " *ngFor="let product of products">
+            <div class="product-grid" id="product-1168979">
+              <div class="image" style="height:250px;"> <a [routerLink]="['product/product-detail',product.id]"><img [src]="product.image" title="{{product.title}}" alt="{{product.title}}" class="img-responsive"></a> </div>
+              <div class="info">
+                <h3 class="name"><a [routerLink]="['product/product-detail',product.id]">{{product.name}}</a></h3>
+                <p class="price-box"> <span class="special-price"> <span class="price product-price" style="text-decoration:line-through;"> {{product.price + 500000 | currency:'VND'}}</span></span> </p>
+                <p class="price-box"> <span class="special-price"> <span class="price product-price"> {{product.price | currency:'VND'}} </span></span> </p>
+                <p class="price-box"> <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a> <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a> <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a> <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a> <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a> </p>
+                <div class="action-btn">
+                  <form>
+                    <button (click)="addToCart(product)" class="button">Add to Cart</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--end box product -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-12"> <img src=".../../../../assets/Frontend/images/adv1.jpg" class="img-thumbnail"> </div>
+  </div>
+  <div class="special-collection">
+    <div class="tabs-container">
+      <div class="row" style="margin-top:10px;">
+        <div class="col-lg-10">
+          <h2>IPHONE</h2>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <div class="tabs-content row">
+      <div id="content-tabb1" class="content-tab content-tab-proindex">
+        <div class="clearfix">
+          <!-- box product -->
+          <div class="col-xs-6 col-md-3 col-sm-6 " *ngFor="let ip of iphone">
+            <div class="product-grid" id="product-1168979">
+              <div class="image" style="height:250px;"> <a [routerLink]="['product/product-detail',ip.id]"><img src="{{ip.image}}" title="product ..." alt="product ..." class="img-responsive"></a> </div>
+              <div class="info">
+                <h3 class="name"><a [routerLink]="['product/product-detail',ip.id]">{{ip.name}}</a></h3>
+                <p class="price-box"> <span class="special-price"> <span class="price product-price" style="text-decoration:line-through;"> {{ip.price + 500000 | currency:'VND'}}</span></span> </p>
+                <p class="price-box"> <span class="special-price"> <span class="price product-price">  {{ip.price | currency:'VND'}} </span> </span> </p>
+                <p class="price-box"> <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a> <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a> <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a> <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a> <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a> </p>
+                <div class="action-btn">
+                  <form>
+                    <button (click)="addToCart(ip)" class="button">Add to Cart</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--end box product -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="special-collection">
+    <div class="tabs-container">
+      <div class="row" style="margin-top:10px;">
+        <div class="col-lg-10">
+          <h2>XIAOMI</h2>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <div class="tabs-content row">
+      <div id="content-tabb1" class="content-tab content-tab-proindex">
+        <div class="clearfix">
+          <!-- box product -->
+          <div class="col-xs-6 col-md-3 col-sm-6 " *ngFor="let ip of xiaomi">
+            <div class="product-grid" id="product-1168979">
+              <div class="image" style="height:250px;"> <a [routerLink]="['product/product-detail',ip.id]"><img src="{{ip.image}}" title="product ..." alt="product ..." class="img-responsive"></a> </div>
+              <div class="info">
+                <h3 class="name"><a [routerLink]="['product/product-detail',ip.id]">{{ip.name}}</a></h3>
+                <p class="price-box"> <span class="special-price"> <span class="price product-price" style="text-decoration:line-through;"> {{ip.price + 500000 | currency:'VND'}}</span></span> </p>
+                <p class="price-box"> <span class="special-price"> <span class="price product-price">  {{ip.price | currency:'VND'}} </span> </span> </p>
+                <p class="price-box"> <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a> <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a> <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a> <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a> <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a> </p>
+                <div class="action-btn">
+                  <form>
+                    <button (click)="addToCart(ip)" class="button">Add to Cart</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--end box product -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- adv -->
+  <div class="widebanner"> <a href="#"><img src=".../../../../assets/Frontend/100/047/633/themes/517833/assets/widebanner221b.jpg?1481775169361" alt="#" class="img-responsive"></a> </div>
+  <!-- end adv -->
+  <!-- hot news -->
+  <div class="home-blog">
+    <h2 class="title"> <span>Tin tức</span></h2>
+    <div class="row">
+      <!-- <div id="owl-demo" class="owl-home-blog owl-home-blog-bottompage"> -->
+  <owl-carousel-o [options]="customOptions">
+    <ng-template carouselSlide *ngFor="let tintuc of tintucs">
+      <div class="item">
+      <div class="article"> <a class="image"> <img [routerLink]="['tintuc',tintuc.id]" style="height:140px;" [src]="tintuc.image" alt="Mua iPhone 6s và iPhone 6s Plus chính hãng ở đâu?" title="Mua iPhone 6s và iPhone 6s Plus chính hãng ở đâu?" class="img-responsive"> </a>
+        <div class="info">
+          <h3><a routerLink="/tintuc/{{tintuc.id}}" class="text3line" style="font-weight: bold;">{{tintuc.title}}</a></h3>
+          <p class="desc">{{tintuc.description}}</p>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  </owl-carousel-o>
+    </div>
+  </div>
+</div>

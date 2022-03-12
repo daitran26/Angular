@@ -1,0 +1,69 @@
+<a class="btn btn-outline-success btn-lg mb-3" [routerLink]="['product-add']"><i class="fas fa-plus-circle mr-2"></i>Add new product</a>
+<mat-card>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Image</th>
+        <th scope="col">Price</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of page?.content">
+        <th scope="row">{{product.id}}</th>
+        <td>{{product.name}}</td>
+        <td><img style="border-radius: 10px;" src="{{product.image}}" alt="image" width="100"/></td>
+        <td>{{product.price | currency:'VND'}}</td>
+        <td>
+            <a title="Sửa sản phẩm" [routerLink]="['/main/product-edit', product.id]" class="btn btn-primary mr-3 text-white"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+            <button title="Xóa sản phẩm" type="button" class="btn btn-primary" (click)="openModal(product.id)"> <i class="fa fa-trash" aria-hidden="true"></i></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="col-md-12 column">
+    <ul class="pagination justify-content-end">
+        <li class="page-item" *ngIf="page?.number > 0; else prev">
+            <a class="page-link" [routerLink]="['./']" [queryParams]="{ page: page?.number, size: page?.size }" >Previous</a>
+      </li>
+        <ng-template #prev>
+            <li class="page-item  disabled"><a class="page-link">Previous</a></li>
+        </ng-template>
+
+        <ng-container *ngFor="let item of counter(page?.totalPages); let i = index">
+            <li class="page-item" *ngIf="page && page.number != i; else active">
+              <a class="page-link " routerLink="./" [queryParams]="{ page: i + 1, size: page?.size }">{{ i + 1 }}</a >
+          </li>
+            <ng-template #active>
+                <li class="page-item active ">
+                    <button class="page-link " disabled>{{ i + 1 }}</button>
+                </li>
+            </ng-template>
+        </ng-container>
+        <li class="page-item" *ngIf="page?.number + 1 < page?.totalPages; else next">
+            <a class="page-link" [routerLink]="['./']" [queryParams]="{ page: page?.number + 2,size: page?.size}">Next</a>
+      </li>
+      <ng-template #next>
+          <li class="page-item disabled "><a class="page-link">Next</a></li>
+      </ng-template>
+    </ul>
+  </div>
+</mat-card>
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left" style="font-size: 20px;">Thông báo</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" style="font-size:20px;"><i class="fas fa-times"></i></span>
+    </button>
+  </div>
+  <div class="modal-body"style="width: 100%;">
+    <p style="font-size:16px;">Bạn có muốn xóa sản phẩm này không?</p>
+    <span class="float-right">
+      <button type="button" class="btn btn-warning mr-2 btn-lg" (click)="confirm()" >Xóa</button>
+    <button type="button" class="btn btn-primary btn-lg" (click)="decline()" >Hủy</button>
+    </span>
+  </div>
+</ng-template>
+<!-- <button class="btn btn-primary btn-lg" (click)="onClick()">Modal</button> -->

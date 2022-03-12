@@ -1,0 +1,18 @@
+.pagination{
+  overflow: hidden;
+  height: 34px;
+  display: flex;
+}
+.page-item.active .page-link{
+  height: 31px;
+  padding:0 10px;
+}
+/* https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/a60759ad1dabe909c46a817ecbf71878.png */
+.info h3 a {
+  word-wrap: break-word;
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: aquamarine;
+  text-shadow: 3px 3px 1px #878c882a;
+}

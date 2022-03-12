@@ -1,0 +1,22 @@
+<mat-card>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8">
+        <h2 class="text-center">SỬA THÔNG TIN DANH MỤC SẢN PHẨM</h2>
+        <form #formAdd="ngForm" (ngSubmit)="save()" *ngIf="category">
+          <div class="form-group">
+              <label for="exampleInputEmail1">Tên danh mục</label>
+              <input type="text" class="form-control" minlength = "4" #name="ngModel" name="name" [(ngModel)] = "category.name" required>
+              <div *ngIf="name.errors && (name.dirty || name.touched)" class="text-danger">
+                  <div *ngIf="name.errors?.['required']">
+                      Tên không được để trống.
+                    </div>
+              </div>
+          </div>
+          <button type="submit" [disabled]="formAdd.invalid" class="btn btn-primary btn-lg">Sửa danh mục</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</mat-card>
+

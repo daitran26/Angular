@@ -1,0 +1,49 @@
+<div class="tabs-container">
+  <div class="row" style="margin-top:10px;">
+    <div class="head-tabs head-tab1 col-lg-3">
+      <h2>{{title}}</h2>
+    </div>
+    <div class="col-lg-3 pull-right text-right" style="margin-left:50%;margin-top: 15px;">
+      <select class="form-control" style="height:auto" ngModel name="name" (change)="onChange($event)">
+        <option value="">---Sắp xếp---</option>
+        <option value="price,ASC">Giá tăng dần</option>
+        <option value="price,DESC"><i class="far fa-sort-numeric-up"></i>Giá giảm dần</option>
+        <option value="name,ASC"><i class="fa fa-sort-alpha-asc" aria-hidden="true"></i>Sắp xếp A-Z</option>
+        <option value="name,DESC"><i class="far fa-sort-alpha-down"></i>Sắp xếp Z-A</option>
+      </select>
+      <i class="far fa-sort-alpha-down"></i>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>
+<div class="tabs-content row">
+  <div id="content-tabb1" class="content-tab content-tab-proindex">
+    <div class="clearfix">
+      <div class="col-xs-6 col-md-3 col-sm-6 " *ngFor="let product of page?.content">
+        <div class="product-grid" id="product-1168979">
+          <div class="image" style="height:180px;"> <a [routerLink]="['/product/product-detail',product.id]"><img [src]="product.image" title="{{product.title}}" alt="{{product.title}}" class="img-responsive"></a> </div>
+          <div class="info">
+            <h3 class="name"><a [routerLink]="['/product/product-detail',product.id]">{{product.name}}</a></h3>
+            <p class="price-box"> <span class="special-price"> <span class="price product-price" style="text-decoration:line-through;"> {{product.price + 500000 | currency:'VND'}}</span></span> </p>
+            <p class="price-box"> <span class="special-price"> <span class="price product-price"> {{product.price | currency:'VND'}} </span></span> </p>
+            <p class="price-box">
+              <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a>
+              <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a>
+              <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a>
+              <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a>
+              <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a>
+            </p>
+            <div class="action-btn">
+              <form>
+                <a (click)="addToCart(product)" class="button">Add to Cart</a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- paging -->
+      <app-pagination [currentPage]="page" [sort]="sort" [price]="form"></app-pagination>
+      <!-- end paging -->
+    </div>
+  </div>
+</div>

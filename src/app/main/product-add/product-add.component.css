@@ -1,0 +1,13 @@
+.mat-progress-spinner.mat-progress-spinner-indeterminate-animation[mode=indeterminate] circle
+{
+  width: 40px!important;
+  height:40px;
+}
+.mat-progress-spinner.mat-progress-spinner-indeterminate-animation[mode=indeterminate] svg {
+  width: 40px!important;
+  height:40px;
+}
+textarea,input{
+  font-size: 14px;
+  font-family: "Helvetica Neue",Helvetica,Arial;
+}

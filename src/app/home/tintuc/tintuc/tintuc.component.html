@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 itemto" *ngFor="let tintuc of page?.content">
+      <div class="item">
+        <div class="article">
+          <div class="row mb-3">
+            <div class="col-sm-6"><a routerLink="/tintuc/{{tintuc.id}}" class="image"> <img style="height:140px;" [src]="tintuc.image" alt="Mua iPhone 6s và iPhone 6s Plus chính hãng ở đâu?" title="Mua iPhone 6s và iPhone 6s Plus chính hãng ở đâu?" class="img-responsive"> </a></div>
+            <div class="col-sm-6"> <h3><a routerLink="/tintuc/{{tintuc.id}}" class="text3line" style="font-weight: bold;">{{tintuc.title}}</a></h3></div>
+          </div>
+          <div class="info mt-2">
+            <p class="desc">{{tintuc.description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-md-12 column">
+  <ul class="pagination justify-content-end">
+      <li class="page-item" *ngIf="page?.number > 0; else prev">
+          <a
+                  class="page-link"
+                  [routerLink]="['./']"
+                  [queryParams]="{ page: page?.number, size: page?.size }">Previous</a>
+    </li>
+      <ng-template #prev>
+          <li class="page-item  disabled"><a class="page-link">Previous</a></li>
+      </ng-template>
+
+      <ng-container *ngFor="let item of counter(page?.totalPages); let i = index">
+          <li class="page-item" *ngIf="page && page.number != i; else active">
+            <a class="page-link " routerLink="./" [queryParams]="{ page: i + 1, size: page?.size }">{{ i + 1 }}</a
+            >
+        </li>
+          <ng-template #active>
+              <li class="page-item active ">
+                  <button class="page-link " disabled>{{ i + 1 }}</button>
+              </li>
+          </ng-template>
+      </ng-container>
+      <li class="page-item" *ngIf="page?.number + 1 < page?.totalPages; else next">
+          <a
+                  class="page-link"
+                  [routerLink]="['./']"
+                  [queryParams]="{page: page?.number + 2,size: page?.size}">Next</a>
+    </li>
+    <ng-template #next>
+        <li class="page-item disabled "><a class="page-link">Next</a></li>
+    </ng-template>
+  </ul>
+</div>
+

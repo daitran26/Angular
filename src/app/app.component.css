@@ -1,0 +1,12 @@
+app-alert{
+
+  position: absolute;
+  margin:auto;
+  z-index: 3;
+  left:50%;
+  transform: translateX(-50%);
+}
+router-outlet{
+  position: relative;
+  z-index: 1;
+}

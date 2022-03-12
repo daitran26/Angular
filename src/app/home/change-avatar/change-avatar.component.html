@@ -1,0 +1,19 @@
+<mat-card>
+  <div class="container">
+  <div class="row">
+    <h2 class="text-center">
+      THAY ĐỔI ẢNH ĐẠI DIỆN
+    </h2>
+    <div class="col-md-3"></div>
+    <div class="col-sm-6">
+        <div>
+          <mat-error style="font-size: 14px;" class="alert alert-info mt-3">{{status}}</mat-error><br><br>
+          <app-upload-avatar (giveURLtoCreate)="upload($event)"></app-upload-avatar>
+          <form (ngSubmit)="onSubmit()">
+            <button class="btn btn-secondary mt-5 btn-lg" type="submit">Thay đổi ảnh</button>
+          </form>
+        </div>
+    </div>
+  </div>
+</div>
+</mat-card>

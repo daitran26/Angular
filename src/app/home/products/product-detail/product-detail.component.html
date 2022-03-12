@@ -1,0 +1,50 @@
+<div class="col-xs-12 col-md-12">
+  <!-- main -->
+    <div class="top mt-5">
+      <div class="row" *ngIf="product">
+        <div class="col-xs-12 col-md-6 product-image">
+          <div class="featured-image">
+            <img [src]="product.image" [alt]="product.title" style="width: 100%;" class="img-responsive"/>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-6 info">
+          <h1 itemprop="name">{{product.name}}</h1>
+          <p itemprop="price" class="price-box product-price-box"> <span class="special-price"> <span class="price product-price" style="text-decoration:line-through;color:red"> {{product.price + 500000 | currency:'VND'}}</span></span></p>
+          <p itemprop="price" class="price-box product-price-box"> <span class="special-price"> <span class="price product-price"> {{product.price | currency:'VND'}}</span></span></p>
+        <button (click)="addToCart(product)" class="btn btn-primary btn-lg">Thêm vào giỏ hàng</button>
+        <!-- rating -->
+        <div style="border:1px solid #dddddd; margin-top: 15px;">
+          <h4 style="padding-left: 10px;">Rating</h4>
+          <table style="width: 100%;">
+            <tr>
+              <td style="width: 80%; padding-left: 10px;"><img src="../../../../assets/Frontend/images/star.jpg"></td>
+              <td><span class="label label-primary">1 vote</span></td>
+            </tr>
+            <tr>
+              <td style="width: 80%; padding-left: 10px;"><img src="../../../../assets/Frontend/images/star.jpg"> <img src="../../../../assets/Frontend/images/star.jpg"></td>
+              <td><span class="label label-warning">1 vote</span></td>
+            </tr>
+            <tr>
+              <td style="width: 80%; padding-left: 10px;"><img src="../../../../assets/Frontend/images/star.jpg"> <img src="../../../../assets/Frontend/images/star.jpg"> <img src="../../../../assets/Frontend/images/star.jpg"></td>
+              <td><span class="label label-danger">1 vote</span></td>
+            </tr>
+            <tr>
+              <td style="width: 80%; padding-left: 10px;"><img src="../../../../assets/Frontend/images/star.jpg"> <img src="../../../../assets/Frontend/images/star.jpg"> <img src="../../../../assets/Frontend/images/star.jpg"> <img src="../../../../assets/Frontend/images/star.jpg"></td>
+              <td><span class="label label-info">1 vote</span></td>
+            </tr>
+            <tr>
+              <td style="width: 80%; padding-left: 10px;"><img src="../../../../../../../../assets/Frontend/images/star.jpg"> <img src="../../../../assets/Frontend/images/star.jpg"> <img src="../../../../assets/Frontend/images/star.jpg"> <img src="../../../../assets/Frontend/images/star.jpg"> <img src="../../../../assets/Frontend/images/star.jpg"></td>
+              <td><span class="label label-success">1 vote</span></td>
+            </tr>
+          </table>
+          <br>
+        </div>
+        <!-- /rating -->
+      </div>
+    </div>
+  </div>
+  <div class="middle mt-5">
+    {{product?.description}}
+  </div>
+  <!-- end main -->
+</div>

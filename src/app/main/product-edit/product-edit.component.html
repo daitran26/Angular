@@ -1,0 +1,51 @@
+<mat-card>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8">
+        <h2 class="text-center">SỬA THÔNG TIN SẢN PHẨM</h2>
+        <form #formAdd="ngForm" (ngSubmit)="save()" *ngIf="product"> <!-- formAdd.valid && -->
+          <div class="form-group">
+              <label for="exampleInputEmail1">Tên sản phẩm</label>
+              <input type="text" class="form-control" minlength = "4" #name="ngModel" name="name" [(ngModel)] = "product.name" required>
+              <div *ngIf="name.errors && (name.dirty || name.touched)" class="text-danger">
+                  <div *ngIf="name.errors?.['required']">
+                      Tên không được để trống.
+                    </div>
+                    <div *ngIf="name.errors?.['minlength']">
+                      Tên phải có ít nhất 4 kí tự
+                    </div>
+              </div>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlFile1">Ảnh sản phẩm</label>
+            <input type="file" class="form-control-file" id="exampleFormControlFile1" (change)="onFileChange($event)" name="image" #image="ngModel" ngModel>
+            <mat-spinner *ngIf="checkUpLoad" style="transform:scale(0.4);stroke: rgb(21, 238, 39);width: 100px;padding: -20px;"></mat-spinner>
+              <div>
+                <img src="{{product.image}}" style="width:150px" />
+              </div>
+              <!-- <button *ngIf="downloadUrl?!selectedFile:selectedFile" type="button" class="btn btn-outline-primary btn-lg ml-5"(click)="onUpload()">Upload</button> -->
+          </div>
+          <div class="form-group">
+              <label for="exampleInputPassword1">Giá sản phẩm</label>
+              <input type="number" class="form-control" #name1 = "ngModel" name="price" [(ngModel)] = "product.price">
+          </div>
+          <div class="form-group">
+              <label for="exampleInputPassword1">Tiêu đề</label>
+              <input type="text" class="form-control" name="title" [(ngModel)] = "product.title">
+          </div>
+          <div class="form-group">
+              <label for="exampleInputPassword1">Mô tả</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description" [(ngModel)] = "product.description"></textarea>
+          </div>
+          <div class="form-group">
+              <label for="exampleInputPassword1">Danh mục sản phẩm</label>
+              <select name="category" style="padding:7px;width:250px;border-radius: 4px;margin-left: 16px;" [(ngModel)]="categoryId" required>
+                  <option *ngFor="let category of categories" [value]="category.id" [selected]="product.category.id == category.id">{{category.name}}</option>
+              </select>
+          </div>
+          <button type="submit" [disabled]="formAdd.invalid" class="btn btn-primary btn-lg">Sửa sản phẩm</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</mat-card>

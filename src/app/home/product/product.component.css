@@ -1,0 +1,39 @@
+h6{
+  font-size: 1rem;
+}
+.owl-home-blog.owl-home-blog-bottompage .item{
+  width: 275px;
+    float: left;
+}
+.carousel-indicators li{
+  width:10px;
+  height:10px;
+}
+.info h3 a {
+  word-wrap: break-word;
+  color: #333;
+  font-size: 15px;
+  font-weight: 500;
+  box-shadow: aquamarine;
+  text-shadow: 3px 3px 1px #878c882a;
+}
+#owl-demo .item{
+  background: #42bdc2;
+  padding: 30px 0px;
+  margin: 5px;
+  color: #FFF;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  text-align: center;
+}
+.owl-nav.ng-star-inserted,.owl-prev{
+  position: relative!important;
+  top: -83px!important;
+  right: -46%!important;
+}
+.home-blog .article {
+  padding: 0 15px;
+  height: 392px;
+  overflow: hidden;
+}

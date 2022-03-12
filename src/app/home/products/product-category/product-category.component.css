@@ -1,0 +1,17 @@
+i{
+  font-size: 15px!important;
+}
+app-pagination{
+  background-color: red;
+}
+select{
+  font-size:15px;
+}
+.info h3 a {
+  word-wrap: break-word;
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: aquamarine;
+  text-shadow: 3px 3px 1px #878c882a;
+}

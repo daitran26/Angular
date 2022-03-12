@@ -1,0 +1,21 @@
+.itemto{
+  border: 1px solid #bab1b169;
+  border-radius: 5px;
+  padding: 30px;
+  padding-bottom: 10px;
+  margin-bottom: 50px;
+  max-width: 530px;
+  margin-right: 30px;
+}
+.pagination{
+  overflow: hidden;
+  height: 34px;
+  display: flex;
+}
+.page-item.active .page-link{
+  height: 31px;
+  padding:0 10px;
+}
+a:hover{
+  text-decoration: none;
+}

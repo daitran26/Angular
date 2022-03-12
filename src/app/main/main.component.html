@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdminLTE 2 | Dashboard</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <!-- <link rel="stylesheet" href="../../assets/backend/layout1/css/bootstrap.min.css"> -->
+    <!-- Font Awesome -->
+    <!-- <link rel="stylesheet" href="../../assets/backend/layout1/css/font-awesome.min.css"> -->
+    <!-- <link rel="stylesheet" href="../../assets/backend/layout1/css/AdminLTE.min.css"> -->
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <!-- <link rel="stylesheet" href="../../assets/backend/layout1/css/_all-skins.min.css"> -->
+    <!-- Google Font -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <style>
+      *{
+        font-size: 14px;
+      }
+    </style>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <header class="main-header">
+        <!-- Logo -->
+        <a routerLink="./" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>A</b>LT</span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>Admin</b>LTE</span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button" style="position: relative;
+            left: -30%;">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+
+            <div class="navbar-custom-menu" style="position: relative;
+            right: -30%;">
+                <ul class="nav navbar-nav">
+                    <!-- User Account: style can be found in dropdown.less -->
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img [src]="avatar" class="user-image" alt="User Image">
+                            <span class="hidden-xs">{{name}}</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header">
+                                <img [src]="avatar" class="img-circle" alt="User Image">
+
+                                <p>
+                                    Your profile
+                                    <small>{{name}}</small>
+                                </p>
+                            </li>
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="#" class="btn btn-default btn-flat" style="font-size: 14px;">Profile</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a (click) = "logout($event)" class="btn btn-default btn-flat" style="font-size: 14px;">Sign out</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- Sidebar user panel -->
+            <div class="user-panel">
+                <div class="pull-left image" style="height:60px;width: 60px;">
+                    <img [src]="avatar" class="img-circle" alt="User Image" style="height:45px;border:2px solid #fff;">
+                </div>
+                <div class="pull-left info">
+                    <p>Welcome {{name}}</p>
+                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                </div>
+            </div>
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <ul class="sidebar-menu" data-widget="tree">
+                <li class="header">LAOYOUT ADMIN</li>
+
+                <li>
+                    <a routerLink = "category">
+                      <i style="font-size:18px;" class="fab fa-angular mr-2"></i> <span>Danh mục sản phẩm</span>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink = "product">
+                        <i class="fa fa-th"></i> <span>Danh sách sản phẩm</span>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink = "tintuc">
+                      <i class="far fa-newspaper mr-2"></i> <span>Danh sách tin tức</span>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink = "tintuc">
+                      <i style="font-size:18px;" class="far fa-user mr-2"></i> <span>Quản lý user</span>
+                        <span class="pull-right-container"></span>
+              <!--<small class="label pull-right bg-green">new</small>-->
+                    </a>
+                </li>
+                <li>
+                  <a routerLink="order">
+                    <i class="fa fa-shopping-cart mr-2" aria-hidden="true"></i>
+                    <span>Quản lý đơn hàng</span>
+                      <span class="pull-right-container"></span>
+                  </a>
+              </li>
+
+
+            </ul>
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Dashboard
+                <small>Control panel</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Dashboard</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+           <router-outlet></router-outlet>
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            <b>Version</b> 2.4.13-pre
+        </div>
+        <strong>Copyright &copy; 2014-2022 <a href="https://adminlte.io">AdminLTE</a>.</strong> All rights
+        reserved.
+    </footer>
+    <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+<script src="../../assets/backend/layout1/js/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="../../assets/backend/layout1/js/jquery-ui.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="../../assets/backend/layout1/js/bootstrap.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../assets/backend/layout1/js/adminlte.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

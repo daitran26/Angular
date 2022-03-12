@@ -1,0 +1,9 @@
+.pagination{
+  overflow: hidden;
+  height: 34px;
+  display: flex;
+}
+.page-item.active .page-link{
+  height: 31px;
+  padding:0 10px;
+}

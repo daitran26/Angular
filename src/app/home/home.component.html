@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>MSmobile</title>
+    <link rel="shortcut icon" href="https://msmobile.com.vn/favicon.ico" type="image/x-icon" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+
+<body class="index">
+  <header id="header">
+    <!-- top header -->
+    <div class="top-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-6"> <span><i class="fa fa-phone"></i> (04) 6674 2332</span> <span><i class="far fa-envelope mr-3"></i> <a href="mailto:support@mail.com">support@mail.com</a></span> </div>
+          <div *ngIf="!checkLogin" class="col-xs-12 col-sm-6 col-md-6 customer d-flex justify-content-end float-right">
+            <a [routerLink]="['/login']" >Đăng nhập</a>
+            <a routerLink="/register">Đăng ký</a>
+          </div>
+          <div *ngIf="checkLogin" class="col-xs-12 col-sm-6 col-md-6 customer d-flex justify-content-end float-right pt-2 pb-2">
+            <a [routerLink]="['change-avatar']" title="Thay đổi ảnh đại diện">
+              <img [src]="avatar" alt="" style="width: 30px;height: 30px;border-radius: 50%;">
+            </a>
+            <div class="btn-group d-flex">
+              <div style="font-size:14px;margin-left: -10px;">{{name}}</div>
+              <a style="font-size: 16px;cursor: pointer;" class=" ml-2 dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only">Toggle Dropdown</span>
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" style="color:black" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Thông tin cá nhân</a>
+              <a class="dropdown-item" style="color:black" [routerLink]="['change-password']">Thay đổi mật khẩu</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" style="color:black" href="#" (click)="logOut($event)">Đăng xuất</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end top header -->
+    <!-- middle header -->
+    <div class="mid-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-3 logo" style="background:#0183BF; height:67px;margin-top: 14px!important;padding: 10px;border-radius: 5px;"> <a href="index.html" style="height:47px;"> <img src="https://msmobile.com.vn/images/config/logo.svg" style="height:47px;margin-left: 65px;" alt="DKT Store" title="DKT Store" class="img-responsive"> </a> </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 header-search">
+          <div style="margin-top:25px;">
+            <!-- <input type="text" (keyup)="searchForm($event)" value="" placeholder="Nhập từ khóa tìm kiếm..." id="typeahead-basic" class="form-control" [ngbTypeahead]="search1" [(ngModel)]="model"> -->
+            <form class="example-form">
+              <mat-form-field class="example-full-width w-100 ml-5" appearance="outline">
+                <mat-label>Tìm kiếm</mat-label>
+                <input type="text" placeholder="Nhập từ khóa tìm kiếm..." style="font-size:15px;"
+                       matInput
+                       [formControl]="myControl"
+                       [matAutocomplete]="auto"
+                        (keyup)="onChange($event)"
+                       >
+                  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                  <mat-option *ngFor="let product of filteredOptions | async" [value]="product.name">
+                    <div class="d-flex p-2" style="height:48px;overflow: hidden;">
+                      <img [src]="product.image" alt="" class="anh" width="40" height="40">
+                      <div class="content ml-5">
+                        <div class="name" style="margin-top: -15px;opacity: 0.8;margin-bottom: -27px;"><a [routerLink]="['/product/product-detail',product.id]">{{product.name}}</a></div>
+                        <div class="price" style="color:rgb(11, 11, 255);font-size: 14px;">{{product.price | currency:'VND'}}</div>
+                      </div>
+                    </div>
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            </form>
+            <button [routerLink]="['/product/search']" [queryParams]="{keyword:searchText}">
+               <i style="font-size: 18px;color: black;margin-right: -20px;margin-top: 4px!important;" class="fa fa-search mt-2" (click)="search()"></i> </button>
+          </div>
+          <!--</form>-->
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-3 mini-cart">
+          <div class="wrapper-mini-cart"> <span class="icon"><i class="fa fa-shopping-cart"></i></span>
+            <!-- <a href="cart"> <span class="mini-cart-count"> 2 </span> sản phẩm <i class="fa fa-caret-down"></i></a> -->
+            <a routerLink="cart">
+              <span class="total">
+                  <span>{{ totalQuantity }} sản phẩm <i class="fa fa-caret-down"></i></span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <!-- end middle header -->
+    <!-- bottom header -->
+    <div class="bottom-header">
+      <div class="container">
+        <div class="clearfix">
+          <ul class="main-nav hidden-xs hidden-sm list-unstyled">
+            <li class="active"><a routerLink="/">Trang chủ</a></li>
+            <li class="has-submenu"> <a [routerLink]="['product/category/all']"> <span>Sản phẩm</span><i class="fa fa-caret-down" style="margin-left: 5px;"></i> </a>
+              <ul class="list-unstyled level1">
+                <li style="padding-left:20px;" class="menu" *ngFor="let category of categories">
+                  <a [routerLink]="['product/category',category.id]">{{category.name}}</a>
+                  <!--href="product/category?cate={{category.id}}"  -->
+                </li>
+              </ul>
+            </li>
+            <li><a routerLink="/cart">Giỏ hàng</a></li>
+            <li><a routerLink="/order">Đơn hàng</a></li>
+            <li><a routerLink="/tintuc">Tin tức</a></li>
+            <li><a routerLink="/contact">Liên hệ</a></li>
+          </ul>
+          <a href="javascript:void(0);" class="toggle-main-menu hidden-md hidden-lg"> <i class="fa fa-bars"></i> </a>
+          <ul class="list-unstyled mobile-main-menu hidden-md hidden-lg" style="display:none">
+            <li class="active"><a href="index.php">Trang chủ</a></li>
+            <li><a href="#">Giới thiệu</a></li>
+            <li><a routerLink="/tintuc">Tin tức</a></li>
+            <li><a href="index.php?controller=lienhe">Liên hệ</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- end bottom header -->
+    </header>
+    <!-- Navbar Start -->
+    <div class="content">
+      <div class="container">
+        <div class="row">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+    <div class="privacy">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-4">
+            <div class="image"> <img src="../../assets/Frontend/100/047/633/themes/517833/assets/ico-service-1221b.png?1481775169361" alt="Giao hàng miễn phí" title="Giao hàng miễn phí" class="img-responsive"> </div>
+            <div class="info">
+              <h3>Giao hàng miễn phí</h3>
+              <p>Miễn phí giao hàng trong nội thành Hà Nội</p>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <div class="image"> <img src="../../assets/Frontend/100/047/633/themes/517833/assets/ico-service-2221b.png?1481775169361" class="img-responsive" alt="Khuyến mại" title="Khuyến mại"> </div>
+            <div class="info">
+              <h3>Khuyến mại</h3>
+              <p>Khuyến mại sản phẩm nếu đơn hàng trên 1.000.000đ</p>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <div class="image"> <img src="../../assets/Frontend/100/047/633/themes/517833/assets/ico-service-3221b.png?1481775169361" class="img-responsive" alt="Hoàn trả lại tiền" title="Hoàn trả lại tiền"> </div>
+            <div class="info">
+              <h3>Hoàn trả lại tiền</h3>
+              <p>Nếu sản phẩm không đảm bảo chất lượng hoặc sản phẩm không đúng miêu tả</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer id="footer">
+      <div class="top-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12 col-sm-3">
+              <h3>Về chúng tôi</h3>
+              <ul class="list-unstyled">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="gioi-thieu">Giới thiệu</a></li>
+                <li><a href="tin-tuc">Tin tức</a></li>
+                <li><a href="gioi-thieu">Liên hệ</a></li>
+              </ul>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+              <h3>Hướng dẫn</h3>
+              <ul class="list-unstyled">
+                <li><a href="huo-ng-da-n-mua-ha-ng">Hướng dẫn mua hàng</a></li>
+                <li><a href="huong-dan">Giao nhận và thanh toán</a></li>
+                <li><a href="do-i-tra-va-ba-o-ha-nh">Đổi trả và bảo hành</a></li>
+                <li><a href="account/register">Đăng ký thành viên</a></li>
+              </ul>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+              <h3>Chính sách</h3>
+              <ul class="list-unstyled">
+                <li><a href="chinh-sach">Chính sách thanh toán</a></li>
+                <li><a href="chi-nh-sa-ch-va-n-chuye-n">Chính sách vận chuyển</a></li>
+                <li><a href="chi-nh-sa-ch-do-i-tra">Chính sách đổi trả</a></li>
+                <li><a href="chi-nh-sa-ch-ba-o-ha-nh">Chính sách bảo hành</a></li>
+              </ul>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+              <h3>Điều khoản</h3>
+              <ul class="list-unstyled">
+                <li><a href="dieu-khoan">Điều khoản sử dụng</a></li>
+                <li><a href="die-u-khoa-n-giao-di-ch">Điều khoản giao dịch</a></li>
+                <li><a href="di-ch-vu-tie-n-i-ch">Dịch vụ tiện ích</a></li>
+                <li><a href="quye-n-so-hu-u-tri-tue">Quyền sở hữu trí tuệ</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="payments-method"> <img src="../../assets/Frontend/100/047/633/themes/517833/assets/payments-method221b.png?1481775169361" alt="Phương thức thanh toán" title="Phương thức thanh toán"> </div>
+        </div>
+      </div>
+      <div class="bottom-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12 col-sm-5"> © 2011 - 2021 MSmobile - Hệ Thống Bán Lẻ Điện Thoại Di Động Chính Hãng.</div>
+            <div class="col-xs-12 col-sm-7">
+              <ul class="list-unstyled">
+                <li><a href="#">Trang chủ</a></li>
+                <li><a href="#">Giới thiệu</a></li>
+                <li><a href="#">Tin tức</a></li>
+                <li><a href="#">Liên hệ</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+<!-- Modal -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">THÔNG TIN CÁ NHÂN</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span style="font-size: 30px;" aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #f="ngForm" (ngSubmit)="f.valid && update(f.value)" *ngIf="user">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Tên của bạn</label>
+            <input type="text" class="form-control" id="recipient-name" name="name" [(ngModel)]="user.name" >
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Tài khoản</label>
+            <input type="text" class="form-control" id="recipient-name" name="username" [(ngModel)]="user.username" disabled>
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Email</label>
+            <input type="text" class="form-control" id="recipient-name" name="email" [(ngModel)]="user.email" disabled>
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Số điện thoại</label>
+            <input type="number" class="form-control" id="recipient-name" name="phone" [(ngModel)]="user.phone" required>
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Địa chỉ</label>
+            <input type="text" class="form-control" id="recipient-name" name="address" [(ngModel)]="user.address" required>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Đóng</button>
+            <button [disabled]="f.invalid" type="submit" class="btn btn-primary btn-lg">Cập nhật</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/lib/easing/easing.min.js"></script>
+    <script src="../../assets/lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="../../assets/mail/jqBootstrapValidation.min.js"></script>
+    <script src="../../assets/mail/contact.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+
+    <!-- Template Javascript -->
+    <script src='../../assets/Frontend/100/047/633/themes/517833/assets/owl.carousel.min221b.js?1481775169361' type='text/javascript'></script>
+    <script src='./assets/Frontend/100/047/633/themes/517833/assets/responsive-menu221b.js?1481775169361' type='text/javascript'></script>
+    <script src='./assets/Frontend/100/047/633/themes/517833/assets/elevate-zoom221b.js?1481775169361' type='text/javascript'></script>
+    <script src='./assets/Frontend/100/047/633/themes/517833/assets/main221b.js?1481775169361' type='text/javascript'></script>
+    <script src='./assets/Frontend/100/047/633/themes/517833/assets/ajax-cart221b.js?1481775169361' type='text/javascript'></script>
+    <script src="../../assets/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      $('.dropdown-toggle').dropdown()
+      console.log($('.dropdown-toggle'));
+    </script>
+</body>
+
+</html>

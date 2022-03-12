@@ -1,0 +1,41 @@
+<h1 align="center" class="display-4 mb-5" style="font-weight: bold;">ĐƠN HÀNG</h1>
+
+<table class="table table-striped text-center">
+    <thead>
+    <tr>
+        <th scope="col">Order #</th>
+        <th scope="col">Customer Name</th>
+        <th scope="col">Customer Email</th>
+        <th scope="col">Customer phone</th>
+        <th scope="col">Shipping Address</th>
+        <th scope="col">Total</th>
+        <th scope="col">Order Data</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr *ngFor="let order of page?.content">
+        <th class="align-middle" scope="row">
+            {{order.id}}
+        </th>
+        <td class="align-middle">{{order.buyerName}}</td>
+        <td class="align-middle">{{order.buyerEmail}}</td>
+        <td class="align-middle">{{order.buyerPhone}}</td>
+        <td class="align-middle">{{order.buyerAddress}}</td>
+        <td class="align-middle">{{order.orderAmount | currency:'VND'}}</td>
+        <td class="align-middle">{{order.createTime | date:'dd/MM/yyyy | HH:mm:ss'}}</td>
+        <td class="align-middle">{{orderStatus[order.orderStatus]}}</td>
+        <td class="align-middle">
+            <a style="display:block" routerLink="/main/order-detail/{{order.id}}">Xem</a>
+            <a *ngIf="order.orderStatus == 0" style="display: block" (click)="cancel(order)" routerLink="./">Hủy</a>
+            <a *ngIf="order.orderStatus == 0"
+               style="display: block"
+               (click)="finish(order)"
+               routerLink="./">
+                Xác nhận</a>
+        </td>
+    </tr>
+    </tbody>
+</table>

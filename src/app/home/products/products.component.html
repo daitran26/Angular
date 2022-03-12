@@ -1,0 +1,76 @@
+<div class="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-3">
+        <!-- end support -->
+        <div class="online_support block">
+          <div class="new_title ">
+            <h2 class="pt-3">Hỗ trợ trực tuyến</h2>
+          </div>
+          <div class="block-content">
+            <div class="sp_1">
+              <p>Tư vấn bán hàng 1</p>
+              <p>Mrs. Dung: (04) 3786 8904</p>
+            </div>
+            <div class="sp_1">
+              <p>Tư vấn bán hàng 2</p>
+              <p>Mr. Tuấn: (04) 3786 8904</p>
+            </div>
+            <div class="sp_1">
+              <p>Email liên hệ</p>
+              <p>support@mail.com</p>
+            </div>
+          </div>
+        </div>
+        <!-- end support online -->
+        <!-- box search -->
+        <div class="panel panel-default" style="margin-top:15px;">
+          <div class="panel-heading"> Tìm theo mức giá </div>
+          <div class="panel-body">
+            <form #f="ngForm" class="list-group" style="border:0px;" (ngSubmit)="f.valid && onSubmit()">
+              <li class="list-group-item" style="border:0px;">Giá từ &nbsp;&nbsp;
+                <input style="font-size: 14px;" type="number" min="0" value="0" id="fromPrice" class="form-control" name="min" [(ngModel)]="form.min" required/>
+              </li>
+              <li class="list-group-item" style="border:0px;">Đến &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input style="font-size: 14px;" type="number" min="0" value="10000000" id="toPrice" class="form-control" name="max" [(ngModel)]="form.max" required/>
+              </li>
+              <li class="list-group-item" style="border:0px; text-align:center">
+                <input type="submit" class="btn btn-secondary btn-lg" value="Tìm mức giá" />
+              </li>
+            </form>
+          </div>
+        </div>
+        <!-- end box search -->
+
+        <!-- hot news -->
+        <div class="home-blog">
+          <h2 class="title"> <span>Tin tức</span></h2>
+          <div class="row">
+            <div class="owl-home-blog owl-home-blog-sidebar">
+              <!-- list hot news -->
+              <div class="item">
+                <div class="article"> <a href="index.php?controller=news_detail&id=20" class="image"> <img src="../../../assets/Frontend/images/chicago.jpg" alt="Mua iPhone 6s và iPhone 6s Plus chính hãng ở đâu?" title="Mua iPhone 6s và iPhone 6s Plus chính hãng ở đâu?" class="img-responsive"> </a>
+                  <div class="info">
+                    <h3><a href="index.php?controller=news_detail&id=20">Mua iPhone 6s và iPhone 6s Plus chính hãng ở đâu?</a></h3>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end hot news -->
+      </div>
+      <div class="col-xs-12 col-md-9">
+        <!-- main -->
+        <div class="special-collection">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+    <!-- adv -->
+    <div class="widebanner">
+      <a href="#"><img src="../../../assets/Frontend/100/047/633/themes/517833/assets/widebanner221b.jpg?1481775169361" alt="#" class="img-responsive"></a> </div>
+    <!-- end adv -->
+  </div>
+</div>

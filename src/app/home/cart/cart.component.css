@@ -1,0 +1,9 @@
+.nut{
+  font-size:14px;
+  padding:12px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.nut:hover{
+  background-color:#DDDDDD;
+}

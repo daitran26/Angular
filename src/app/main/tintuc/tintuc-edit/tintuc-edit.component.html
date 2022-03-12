@@ -1,0 +1,46 @@
+<mat-card>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8">
+        <h2 class="text-center">THÊM TIN TỨC</h2>
+        <form #formAdd="ngForm" (ngSubmit)="formAdd.valid && save()"> <!-- formAdd.valid && -->
+            <div class="form-group">
+                <label for="exampleInputEmail1">Tiêu đề</label>
+                <input type="text" class="form-control" #name="ngModel" name="name" [(ngModel)]="tintuc.title" required>
+                <div *ngIf="name.errors && (name.dirty || name.touched)" class="text-danger">
+                    <div *ngIf="name.errors?.['required']">
+                        Tiêu đề không được để trống.
+                      </div>
+                </div>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlFile1">Ảnh</label>
+              <input type="file" class="form-control-file" id="exampleFormControlFile1" (change)="onFileChange($event)" name="image" #image="ngModel" ngModel required>
+              <div>
+                <img src="{{tintuc.image}}" style="width:100px" />
+              </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Mô tả</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" #description = "ngModel" required rows="3" name="description" [(ngModel)]="tintuc.description"></textarea>
+                <div *ngIf="description.errors && (description.dirty || description.touched)" class="text-danger">
+                  <div *ngIf="description.errors?.['required']">
+                    Mô tả không được để trống.
+                    </div>
+              </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword11">Nội dung</label>
+                <textarea class="form-control" id="exampleFormControlTextarea11" #content = "ngModel" required rows="3" name="content" [(ngModel)]="tintuc.content"></textarea>
+                <div *ngIf="content.errors && (content.dirty || content.touched)" class="text-danger">
+                  <div *ngIf="content.errors?.['required']">
+                    Nội dung không được để trống.
+                    </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-success btn-lg mt-4">Sửa tin tức</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</mat-card>

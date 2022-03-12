@@ -1,0 +1,166 @@
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-sm-12 mt-4 mb-4">
+        <h2 class="text-center mb-5">ĐĂNG KÝ TÀI KHOẢN</h2>
+        <form class="form-horizontal text-center" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()">
+            <mat-error class="alert alert-info w-50" style="margin-left: 25%;font-size:14px;">{{status}}</mat-error>
+            <mat-form-field appearance="fill" class="w-50">
+              <mat-label>Name</mat-label>
+              <input name="name" [(ngModel)] ="form.name" #name="ngModel" matInput placeholder="Enter name..." required minlength="6">
+              <mat-icon color="accent" matSuffix></mat-icon>
+              <mat-error *ngIf="name.hasError('required')">Name is required</mat-error>
+              <mat-error *ngIf="name.hasError('minlength')">Name is at least 6 character</mat-error>
+            </mat-form-field><br>
+            <mat-form-field appearance="fill" class="w-50">
+              <mat-label>Username</mat-label>
+              <input name="username" [(ngModel)] ="form.username" #username="ngModel" matInput placeholder="Enter username..." required minlength="6">
+              <mat-icon color="accent" matSuffix></mat-icon>
+              <mat-error *ngIf="name.hasError('required')">Username is required</mat-error>
+              <mat-error *ngIf="name.hasError('minlength')">Username is at least 6 character</mat-error>
+            </mat-form-field><br>
+            <mat-form-field appearance="fill" class="w-50">
+              <mat-label>Email</mat-label>
+              <input name="email" [(ngModel)] ="form.email" [formControl]="emailFormControl" [email]="true" matInput placeholder="Enter email..." required>
+              <mat-icon color="accent" matSuffix></mat-icon>
+              <mat-error *ngIf="emailFormControl.hasError('required')">Email is required</mat-error>
+              <mat-error *ngIf="emailFormControl.hasError('email')">Email không hợp lệ</mat-error>
+            </mat-form-field><br>
+            <mat-form-field appearance="fill" class="w-50">
+              <mat-label>Enter your password</mat-label>
+              <input name="password" matInput [type]="hide ? 'password' : 'text'" [(ngModel)] = "form.password" #password="ngModel" required minlength="6">
+              <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="password.hasError('required')">Password required</mat-error>
+              <mat-error *ngIf="password.hasError('minlength')">Password is at least 6 character</mat-error>
+            </mat-form-field><br>
+            <button mat-button color="danger" type="submit" class="btn btn-info">Đăng ký</button>
+            <button mat-button color="danger" *ngIf="!hide1" [routerLink]="['/login']" class="ml-5">Login</button>
+          </form>
+    </div>
+  </div>
+</div> -->
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Register Page</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container">
+	<div class="d-flex justify-content-center h-100">
+    <img routerLink="/" class="logo" src="https://msmobile.com.vn/images/config/logo.svg" alt="">
+		<div class="card">
+			<div class="card-header">
+				<h2 style="color:white;">Sign up</h2>
+				<div class="d-flex justify-content-end social_icon">
+					<span><i class="fa fa-facebook-square"></i></span>
+					<span><i class="fa fa-google-plus-square"></i></span>
+					<span><i class="fa fa-twitter-square"></i></span>
+				</div>
+			</div>
+			<div class="card-body">
+				<form #f="ngForm" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i style="font-size:16px;" class="fa fa-user-circle"></i></span>
+						</div>
+						<input type="text" class="form-control" formControlName="name" placeholder="name" name="name" [(ngModel)]="form.name" required>
+            <div class="text-danger validator"
+                *ngIf="(registerFormControl['name'].touched || submitted) && registerFormControl['name'].errors?.['required']">
+                Tên không để trống
+            </div>
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i style="font-size:16px;" class="fa fa-user"></i></span>
+						</div>
+						<input type="text" class="form-control" formControlName="username" placeholder="username" name="username" [(ngModel)]="form.username" required>
+            <div class="validator">
+              <span class="text-danger"
+                    *ngIf="(registerFormControl['username'].touched || submitted) && registerFormControl['username'].errors?.['required']">
+                    Username không được để trống
+              </span>
+              <span class="text-danger"
+                    *ngIf="(registerFormControl['username'].touched || submitted) && registerFormControl['username'].errors?.['minlength']">
+                    Username phải có ít nhất 4 kí tự
+              </span>
+            </div>
+
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i style="font-size:16px;" class="fa fa-envelope"></i></span>
+						</div>
+						<input type="email" class="form-control" formControlName="email" [formControl]="emailFormControl" placeholder="email" name="email" [(ngModel)]="form.email" required>
+            <div class="validator">
+              <span class="text-danger"
+              *ngIf="(registerFormControl['email'].touched || submitted) && registerFormControl['email'].errors?.['required']">
+              Email không được để trống
+          </span>
+          <span class="text-danger"
+              *ngIf="registerFormControl['email'].touched && registerFormControl['email'].errors?.['email']">
+              Email không hợp lệ
+          </span>
+            </div>
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i style="font-size:16px;" class="fa fa-key"></i></span>
+						</div>
+						<input type="password" class="form-control" placeholder="password" formControlName="password" name="password" [(ngModel)]="form.password" required>
+            <div class="validator">
+              <span class="text-danger"
+                                *ngIf="(registerFormControl['password'].touched || submitted) && registerFormControl['password'].errors?.['required']">
+                                Mật khẩu không được để trống
+                            </span>
+                            <span class="text-danger"
+                                *ngIf="registerFormControl['password'].touched && registerFormControl['password'].errors?.['invalidPassword']">
+                                Mật khẩu phải có ít nhất 6 kí tự 1 chữ hoa 1 chữ thường và 1 số
+                            </span>
+            </div>
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i style="font-size:16px;" class="fa fa-lock"></i></span>
+						</div>
+						<input type="password" class="form-control" formControlName="confirmPassword" placeholder="confirmPassword" name="repassword" [(ngModel)]="form.repassword" required>
+            <div class="validator">
+              <span class="text-danger"
+              *ngIf="(registerFormControl['confirmPassword'].touched || submitted)&& registerFormControl['confirmPassword'].errors?.['required']">
+              Mật khẩu nhập lại không được để trống
+          </span>
+          <span class="text-danger"
+              *ngIf="registerFormControl['confirmPassword'].touched && registerFormControl['confirmPassword'].errors?.['passwordMismatch']">
+              Mật khẩu nhập lại không khớp
+          </span>
+            </div>
+					</div>
+					<div class="form-group">
+						<input type="submit" value="Register" class="btn float-right login_btn btn-lg mt-5">
+					</div>
+          <div *ngIf="!hide1" class="alert alert-danger" style="font-size: 15px;margin-top: 90px;">{{status}}</div>
+				</form>
+			</div>
+			<div class="card-footer" style="font-size: 14px;">
+				<div class="d-flex justify-content-center links">
+					You have an account?<a  routerLink="/login">Sign In</a>
+				</div>
+				<div class="d-flex justify-content-center">
+					<a href="#">Forgot your password?</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
+
+
