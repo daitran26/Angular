@@ -1,4 +1,4 @@
 <div class="thongbao" *ngFor="let alert of alerts" class="{{cssClass(alert)}}">
-  <a style="margin-right: 40px;font-size: 25px;" class="close" (click)="removeAlert(alert)">&times;</a>
+  <a style="margin-right: 30px;font-size: 15px;" class="close mt-2" (click)="removeAlert(alert)">&times;</a>
   <span [innerHTML]="alert.message"></span>
 </div>

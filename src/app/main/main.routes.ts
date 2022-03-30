@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from '../main/home/home.component';
 import { MainComponent } from './main.component';
 import { ProductAddComponent } from './product-add/product-add.component';
 import { ProductComponent } from '../main/product/product.component';
@@ -14,6 +13,10 @@ import { CategoryComponent } from './category/category/category.component';
 import { CategoryEditComponent } from './category/category-edit/category-edit.component';
 import { TintucAddComponent } from './tintuc/tintuc-add/tintuc-add.component';
 import { TintucEditComponent } from './tintuc/tintuc-edit/tintuc-edit.component';
+import { UserComponent } from './user/user/user.component';
+import { UserAddComponent } from './user/user-add/user-add.component';
+import { UserEditComponent } from './user/user-edit/user-edit.component';
+import { HomeComponent } from './home/home.component';
 export const mainRoutes:Routes = [
     {
         path: '', component:MainComponent,
@@ -31,6 +34,9 @@ export const mainRoutes:Routes = [
             {path: 'category',component:CategoryComponent},
             {path: 'category-add',component:CategoryAddComponent},
             {path: 'category/:id',component:CategoryEditComponent},
+            {path: 'user',component:UserComponent},
+            {path: 'user-add',component:UserAddComponent},
+            {path: 'user/:id',component:UserEditComponent},
         ]
     },
 ]

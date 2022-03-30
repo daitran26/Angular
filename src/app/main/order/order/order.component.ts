@@ -30,7 +30,7 @@ export class OrderComponent implements OnInit {
 }
 update() {
   let nextPage = 1;
-  let size = 10;
+  let size = 6;
   if (this.activatedRoute.snapshot.queryParamMap.get('page')) {
       nextPage = Number(this.activatedRoute.snapshot.queryParamMap.get('page'));
       size = Number(this.activatedRoute.snapshot.queryParamMap.get('size'));
@@ -39,7 +39,7 @@ update() {
       this.page = page;
       console.log(page)
     }
-      , _ => {console.log("Get Orde Failed")});
+      , _ => {console.log("Get Order Failed")});
 }
 
 
@@ -58,5 +58,7 @@ finish(order: any) {
       }
   })
 }
-
+counter(i = 1) {
+  return new Array(i);
+}
 }

@@ -8,10 +8,10 @@
           </div>
         </div>
         <div class="col-xs-12 col-md-6 info">
-          <h1 itemprop="name">{{product.name}}</h1>
-          <p itemprop="price" class="price-box product-price-box"> <span class="special-price"> <span class="price product-price" style="text-decoration:line-through;color:red"> {{product.price + 500000 | currency:'VND'}}</span></span></p>
+          <h1 style="line-height: 30px!important;" itemprop="name">{{product.name}}</h1>
+          <p itemprop="price" class="price-box product-price-box"> <span class="special-price"> <span class="price product-price" style="text-decoration:line-through;color:rgb(209, 37, 37)"> {{product.price + 500000 | currency:'VND'}}</span></span></p>
           <p itemprop="price" class="price-box product-price-box"> <span class="special-price"> <span class="price product-price"> {{product.price | currency:'VND'}}</span></span></p>
-        <button (click)="addToCart(product)" class="btn btn-primary btn-lg">Thêm vào giỏ hàng</button>
+        <button (click)="addToCart(product)" class="btn btn-outline-secondary btn-lg"><i class="fas fa-cart-plus mr-3"></i>Thêm vào giỏ hàng</button>
         <!-- rating -->
         <div style="border:1px solid #dddddd; margin-top: 15px;">
           <h4 style="padding-left: 10px;">Rating</h4>

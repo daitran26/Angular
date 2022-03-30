@@ -1,41 +1,70 @@
-<h1 align="center" class="display-4 mb-5" style="font-weight: bold;">ĐƠN HÀNG</h1>
+<mat-card>
+  <h1 align="center" class="display-4 mb-5" style="font-weight: bold;">ĐƠN HÀNG</h1>
 
-<table class="table table-striped text-center">
-    <thead>
-    <tr>
-        <th scope="col">Order #</th>
-        <th scope="col">Customer Name</th>
-        <th scope="col">Customer Email</th>
-        <th scope="col">Customer phone</th>
-        <th scope="col">Shipping Address</th>
-        <th scope="col">Total</th>
-        <th scope="col">Order Data</th>
-        <th scope="col">Status</th>
-        <th scope="col">Action</th>
-    </tr>
-    </thead>
-    <tbody>
+  <table class="table table-striped text-center">
+      <thead>
+      <tr>
+          <th scope="col">Order #</th>
+          <th scope="col">Tên khách hàng</th>
+          <th scope="col">Email</th>
+          <th scope="col">Số điện thoại</th>
+          <th scope="col">Địa chỉ khách hàng</th>
+          <th scope="col">Thành tiền</th>
+          <th scope="col">Ngày đặt</th>
+          <th scope="col">Tình trạng</th>
+          <th scope="col">Hành động</th>
+      </tr>
+      </thead>
+      <tbody>
 
-    <tr *ngFor="let order of page?.content">
-        <th class="align-middle" scope="row">
-            {{order.id}}
-        </th>
-        <td class="align-middle">{{order.buyerName}}</td>
-        <td class="align-middle">{{order.buyerEmail}}</td>
-        <td class="align-middle">{{order.buyerPhone}}</td>
-        <td class="align-middle">{{order.buyerAddress}}</td>
-        <td class="align-middle">{{order.orderAmount | currency:'VND'}}</td>
-        <td class="align-middle">{{order.createTime | date:'dd/MM/yyyy | HH:mm:ss'}}</td>
-        <td class="align-middle">{{orderStatus[order.orderStatus]}}</td>
-        <td class="align-middle">
-            <a style="display:block" routerLink="/main/order-detail/{{order.id}}">Xem</a>
-            <a *ngIf="order.orderStatus == 0" style="display: block" (click)="cancel(order)" routerLink="./">Hủy</a>
-            <a *ngIf="order.orderStatus == 0"
-               style="display: block"
-               (click)="finish(order)"
-               routerLink="./">
-                Xác nhận</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+      <tr *ngFor="let order of page?.content">
+          <th class="align-middle" scope="row">
+              {{order.id}}
+          </th>
+          <td class="align-middle">{{order.buyerName}}</td>
+          <td class="align-middle">{{order.buyerEmail}}</td>
+          <td class="align-middle">{{order.buyerPhone}}</td>
+          <td class="align-middle">{{order.buyerAddress}}</td>
+          <td class="align-middle">{{order.orderAmount | currency:'VND'}}</td>
+          <td class="align-middle">{{order.createTime | date:'dd/MM/yyyy | HH:mm:ss'}}</td>
+          <td class="align-middle">{{orderStatus[order.orderStatus]}}</td>
+          <td class="align-middle">
+              <a style="display:block" routerLink="/main/order-detail/{{order.id}}">Xem</a>
+              <a *ngIf="order.orderStatus == 0" style="display: block" (click)="cancel(order)" routerLink="./">Hủy</a>
+              <a *ngIf="order.orderStatus == 0"
+                 style="display: block"
+                 (click)="finish(order)"
+                 routerLink="./">
+                  Xác nhận</a>
+          </td>
+      </tr>
+      </tbody>
+  </table>
+  <div class="col-md-12 column">
+    <ul class="pagination justify-content-end">
+        <li class="page-item" *ngIf="page?.number > 0; else prev">
+            <a class="page-link" [routerLink]="['./']" [queryParams]="{ page: page?.number, size: page?.size }" >Previous</a>
+      </li>
+        <ng-template #prev>
+            <li class="page-item  disabled"><a class="page-link">Previous</a></li>
+        </ng-template>
+
+        <ng-container *ngFor="let item of counter(page?.totalPages); let i = index">
+            <li class="page-item" *ngIf="page && page.number != i; else active">
+              <a class="page-link " routerLink="./" [queryParams]="{ page: i + 1, size: page?.size }">{{ i + 1 }}</a >
+          </li>
+            <ng-template #active>
+                <li class="page-item active ">
+                    <button class="page-link " disabled>{{ i + 1 }}</button>
+                </li>
+            </ng-template>
+        </ng-container>
+        <li class="page-item" *ngIf="page?.number + 1 < page?.totalPages; else next">
+            <a class="page-link" [routerLink]="['./']" [queryParams]="{ page: page?.number + 2,size: page?.size}">Next</a>
+      </li>
+      <ng-template #next>
+          <li class="page-item disabled "><a class="page-link">Next</a></li>
+      </ng-template>
+    </ul>
+  </div>
+</mat-card>

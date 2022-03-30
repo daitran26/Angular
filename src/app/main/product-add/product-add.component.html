@@ -18,7 +18,7 @@
             </div>
             <div class="form-group">
               <label for="exampleFormControlFile1">Ảnh sản phẩm</label>
-              <input type="file" class="form-control-file" id="exampleFormControlFile1" (change)="onFileChange($event)" name="image" #image="ngModel" ngModel required>
+              <input type="file" class="form-control-file" id="exampleFormControlFile1" (change)="onFileChange($event)" name="image" ngModel required>
               <div *ngIf="downloadUrl">
                 <img src="{{downloadUrl}}" style="width:100px" />
               </div>

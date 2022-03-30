@@ -58,7 +58,6 @@ export class ProductComponent implements OnInit {
   }
   cartItem!:Cart;
   addToCart(product:any){
-    console.log(this.tokenService.getToken())
     if(this.tokenService.getToken() == ""){
       this.router.navigate(['/login'])
     }

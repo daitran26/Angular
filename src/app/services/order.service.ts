@@ -12,17 +12,20 @@ export class OrderService {
   constructor(private http: HttpClient) { }
   getPage(page = 1, size = 10): Observable<any> {
     return this.http.get(`${this.orderApi}?page=${page}&size=${size}`).pipe();
-}
+  }
 
-show(id:number): Observable<Order> {
-    return this.http.get<Order>(`${this.orderApi}/${id}`).pipe();
-}
+  show(id:number): Observable<Order> {
+      return this.http.get<Order>(`${this.orderApi}/${id}`).pipe();
+  }
 
-cancel(id:number): Observable<Order> {
-    return this.http.patch<Order>(`${this.orderApi}/cancel/${id}`, null).pipe();
-}
+  cancel(id:number): Observable<Order> {
+      return this.http.patch<Order>(`${this.orderApi}/cancel/${id}`, null).pipe();
+  }
 
-finish(id:number): Observable<Order> {
-    return this.http.patch<Order>(`${this.orderApi}/finish/${id}`, null).pipe();
-}
+  finish(id:number): Observable<Order> {
+      return this.http.patch<Order>(`${this.orderApi}/finish/${id}`, null).pipe();
+  }
+  getAll():Observable<any>{
+    return this.http.get<any>(`${environment.urlAPI}/order/all`).pipe();
+  }
 }

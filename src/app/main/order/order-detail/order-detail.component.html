@@ -2,12 +2,12 @@
 <table class="table table-striped text-center">
     <thead>
     <tr>
-        <th scope="col">Photo</th>
-        <th scope="col">Name</th>
-        <th scope="col">Title</th>
-        <th scope="col">Price</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Subtotal</th>
+        <th scope="col">Ảnh</th>
+        <th scope="col">Tên sản phẩm</th>
+        <th scope="col">Tiêu đề</th>
+        <th scope="col">Giá</th>
+        <th scope="col">Số lượng</th>
+        <th scope="col">Thành tiền</th>
 
     </tr>
     </thead>
@@ -25,4 +25,4 @@
     </tr>
     </tbody>
 </table>
-<h5 style="display: inline;margin-right: 20px;font-size: 21px;font-weight: 600;color: blue;" class="float-right">Total: {{(order$ | async)?.orderAmount | currency:'VND'}}</h5>
+<h5 style="display: inline;margin-right: 20px;font-size: 21px;font-weight: 600;color: blue;" class="float-right">Tổng tiền: {{(order$ | async)?.orderAmount | currency:'VND'}}</h5>

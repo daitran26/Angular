@@ -26,13 +26,17 @@ import { AlertComponent } from './alert/alert.component';
 import { LoginComponent } from './login/login.component';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import {GoogleLoginProvider,FacebookLoginProvider} from 'angularx-social-login';
+import { ResetPasswordComponent } from './resetpassword/reset-password/reset-password.component';
+import { VerifyResetPasswordComponent } from './resetpassword/verify-reset-password/verify-reset-password.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     AlertComponent,
-    LoginComponent
+    LoginComponent,
+    ResetPasswordComponent,
+    VerifyResetPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +58,7 @@ import {GoogleLoginProvider,FacebookLoginProvider} from 'angularx-social-login';
     SocialLoginModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     RouterModule.forRoot(appRoutes),
-    NgbModule
+    NgbModule,
   ],
   providers: [
     httpInterceptorProvider,

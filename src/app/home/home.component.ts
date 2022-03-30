@@ -94,7 +94,9 @@ export class HomeComponent implements OnInit {
   }
   onChange(e:any){
     this.searchText = e.target.value;
-
+  }
+  onchange(e:any){
+    this.searchText = e.target.value;
   }
   updateCart(){
   }

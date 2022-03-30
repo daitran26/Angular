@@ -1,18 +1,28 @@
-<a class="btn btn-outline-success btn-lg mb-3" [routerLink]="['/main/category-add']"><i class="fas fa-plus-circle mr-2"></i>Thêm danh mục</a>
+<a class="btn btn-outline-success btn-lg mb-3" [routerLink]="['/main/user-add']"><i class="fas fa-plus-circle mr-2"></i>Thêm user</a>
 <div class="panel panel-success">
-  <div class="panel-heading">Danh sách danh mục</div>
+  <div class="panel-heading">Danh sách user</div>
   <div class="panel-body">
       <table class="table table-striped">
           <tr>
-              <th>Tên danh mục</th>
-              <th style="width:200px;">Hành động</th>
+              <th>Avatar</th>
+              <th>Tên</th>
+              <th>Email</th>
+              <th>Số điện thoại</th>
+              <th>Địa chỉ</th>
+              <th>Vai trò</th>
+              <th style="width:200px;">Action</th>
           </tr>
           <tbody>
             <tr *ngFor="let cate of page?.content">
+              <td><img style="width:50px;height: 50px;border-radius: 50%;" src="{{cate.avatar}}" alt=""></td>
               <td style="padding-left: 20px;">{{cate.name}}</td>
+              <td>{{cate.email}}</td>
+              <td>{{cate.phone}}</td>
+              <td>{{cate.address}}</td>
+              <td>{{cate?.roles[0].name}}</td>
               <td>
-                <a title="Sửa sản phẩm" [routerLink]="['/main/category', cate.id]" class="btn btn-primary mr-3 text-white"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                <button title="Xóa sản phẩm" type="button" class="btn btn-primary" (click)="delete(cate.id)"> <i class="fa fa-trash" aria-hidden="true"></i></button>
+                <a title="Sửa tài khoản" [routerLink]="['/main/user', cate.username]" class="btn btn-primary mr-3 text-white"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                <button title="Xóa tài khoản" type="button" class="btn btn-primary" (click)="delete(cate.id)"> <i class="fa fa-trash" aria-hidden="true"></i></button>
             </td>
           </tr>
           </tbody>

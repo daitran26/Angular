@@ -25,7 +25,7 @@ export class ProductComponent implements OnInit,OnDestroy, AfterViewInit {
   ngOnInit(): void {
     this.querySub = this.activatedRoute.queryParams.subscribe(() => {
       this.update();
-  });
+    });
   }
 
   update() {
@@ -39,42 +39,40 @@ export class ProductComponent implements OnInit,OnDestroy, AfterViewInit {
 }
 
   getProds(page: number = 1, size: number = 3) {
-    this.productService.getAllInPage(+page, +size)
-        .subscribe(page => {
+    this.productService.getAllInPage(+page, +size).subscribe(page => {
             this.page = page;
         });
-
-}
+  }
   ngOnDestroy(): void {
     this.querySub.unsubscribe();
-}
-counter(i = 1) {
-  return new Array(i);
-}
-ngAfterViewInit() {
-}
-openModal(id:any) {
-  this.id = id;
-  this.modalRef = this.modalService.show(this.deleteModal, {class: 'modal-md'});
-}
+  }
+  counter(i = 1) {
+    return new Array(i);
+  }
+  ngAfterViewInit() {
+  }
+  openModal(id:any) {
+    this.id = id;
+    this.modalRef = this.modalService.show(this.deleteModal, {class: 'modal-md'});
+  }
 
-confirm(): void {
-  this.productService.delete(this.id).subscribe(data => {
-    console.log(data);
-  },err=>console.log(err))
-  this.modalRef?.hide();
-  this.getProds();
-  this.alertService.success('Success!',this.options);
-}
+  confirm(): void {
+    this.productService.delete(this.id).subscribe(data => {
+      console.log(data);
+    },err=>console.log(err))
+    this.modalRef?.hide();
+    this.getProds();
+    this.alertService.success('Xóa thành công!',this.options);
+  }
 
-decline(): void {
-  this.modalRef?.hide();
-}
-options = {
-  autoClose: true,
-  keepAfterRouteChange: false
-};
+  decline(): void {
+    this.modalRef?.hide();
+  }
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: false
+  };
   onClick(){
-    this.alertService.success('Success!',this.options);
+    this.alertService.success('Xóa thành công!',this.options);
   }
 }

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/storage';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from 'src/app/model/category';
-import { Product } from 'src/app/model/product';
 import { AlertService } from 'src/app/services/alert.service';
 import { CategoryService } from 'src/app/services/category.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -52,32 +51,17 @@ export class ProductEditComponent implements OnInit {
       console.log("Upload false !!!!",error)
     })
   }
-  onUpload(){
-    this.checkUpLoad = true;
-    const id = Math.random().toString(36).substring(2);
-    this.ref = this.afStorage.ref(id);
-    this.ref.put(this.selectedFile).then((snapshot:any) => {
-      return snapshot.ref.getDownloadURL();//lấy về chuỗi url
-    }).then((url:string) => {
-      this.downloadUrl = url;
-      this.checkUpLoad = false;
-      return this.downloadUrl;
-    }).catch((error:any) => {
-      console.log("Upload false !!!!",error)
-    })
-  }
   save(){
-    // this.productService.update(this.product.id)
-    this.categoryService.getCategoryById(+this.product.category).subscribe(data=>{
-      this.product.category = data;
-    })
     var options = {
       autoClose: true,
       keepAfterRouteChange: false
     };
-    this.productService.update(+this.activatedRoute.snapshot.url[1].path,this.product).subscribe(data => {
-      this.router.navigate(['main/product'])
-      this.alertService.success('Sửa sản phẩm thành công!',options);
-    },err => console.log(err))
+    this.categoryService.getCategoryById(+this.categoryId).subscribe(data=>{
+      this.product.category = data;
+      this.productService.update(+this.activatedRoute.snapshot.url[1].path,this.product).subscribe(data => {
+        this.router.navigate(['main/product'])
+        this.alertService.success('Sửa sản phẩm thành công!',options);
+      },err => console.log(err))
+    })
   }
 }

@@ -1,13 +1,13 @@
-<h1 class="display-4 mb-5">Order Detail</h1>
+<h1 class="display-4 mb-5">Chi tiết đơn hàng</h1>
 <table class="table table-striped text-center">
     <thead>
     <tr>
-        <th scope="col">Photo</th>
-        <th scope="col">Name</th>
-        <th scope="col">Title</th>
-        <th scope="col">Price</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Subtotal</th>
+        <th scope="col">Ảnh</th>
+        <th scope="col">Tên sản phẩm</th>
+        <th scope="col">Mô tả</th>
+        <th scope="col">Giá</th>
+        <th scope="col">Số lượng</th>
+        <th scope="col">Thành tiền</th>
 
     </tr>
     </thead>
@@ -25,5 +25,5 @@
     </tr>
     </tbody>
 </table>
-<a routerLink="/order" class="btn btn-outline-success btn-lg float-left" style="font-size: 15px;"><i class="fas fa-long-arrow-alt-left mr-3"></i>Quay lại</a>
-<h5 style="display: inline;font-size: 16px;font-weight: bold;color: rgb(0, 0, 0);margin-right: 20px;" class="float-right mt-4">Total: {{(order$ | async)?.orderAmount | currency:'VND'}}</h5>
+<a routerLink="/order" class="float-left" style="font-size: 15px;"><i class="fas fa-long-arrow-alt-left mr-3"></i>Quay lại</a>
+<h5 style="display: inline;font-size: 16px;font-weight: bold;color: rgb(0, 0, 0);margin-right: 20px;" class="float-right mt-4">Tổng tiền: {{(order$ | async)?.orderAmount | currency:'VND'}}</h5>

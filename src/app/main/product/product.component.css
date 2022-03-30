@@ -3,11 +3,11 @@
   height: 34px;
   display: flex;
   position: fixed;
-  bottom: 70px;
+  bottom: 60px;
   right: 20px;
 }
 .page-item.active .page-link{
-  height: 31px;
+  height: 33px;
   padding:0 10px;
 }
 .modal-content {

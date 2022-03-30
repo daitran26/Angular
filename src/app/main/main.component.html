@@ -4,17 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>AdminLTE 2 | Dashboard</title>
-    <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- Bootstrap 3.3.7 -->
-    <!-- <link rel="stylesheet" href="../../assets/backend/layout1/css/bootstrap.min.css"> -->
-    <!-- Font Awesome -->
-    <!-- <link rel="stylesheet" href="../../assets/backend/layout1/css/font-awesome.min.css"> -->
-    <!-- <link rel="stylesheet" href="../../assets/backend/layout1/css/AdminLTE.min.css"> -->
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
-         folder instead of downloading all of them to reduce the load. -->
-    <!-- <link rel="stylesheet" href="../../assets/backend/layout1/css/_all-skins.min.css"> -->
-    <!-- Google Font -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet"
@@ -27,43 +17,30 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
-
     <header class="main-header">
-        <!-- Logo -->
-        <a routerLink="./" class="logo">
-            <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>A</b>LT</span>
-            <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Admin</b>LTE</span>
+        <a routerLink="./" class="logo d-flex">
+            <span class="logo-mini">MsMobile</span>
+            <img style="width: 38px; height:38px;margin-top: 5px;" src="https://msmobile.vn/images/config/logo_1613531887.png" alt="">
+            <span style="font-weight: bold;font-size: 19px;" class="logo-lg ml-3">MsMobile</span>
         </a>
-        <!-- Header Navbar: style can be found in header.less -->
-        <nav class="navbar navbar-static-top">
-            <!-- Sidebar toggle button-->
-            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button" style="position: relative;
-            left: -30%;">
+        <nav class="navbar navbar-static-top d-flex" style="height:51px;align-items: center;">
+            <a routerLink="./" class="sidebar-toggle" data-toggle="push-menu" role="button" style="position: relative;margin-top:-10px;
+            left: -29%;font-size: 20px;">
                 <span class="sr-only">Toggle navigation</span>
             </a>
-
-            <div class="navbar-custom-menu" style="position: relative;
-            right: -30%;">
+            <div class="navbar-custom-menu" style="position: relative;margin-top:-10px;
+            right: -27%;">
                 <ul class="nav navbar-nav">
-                    <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img [src]="avatar" class="user-image" alt="User Image">
                             <span class="hidden-xs">{{name}}</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <!-- User image -->
                             <li class="user-header">
                                 <img [src]="avatar" class="img-circle" alt="User Image">
-
-                                <p>
-                                    Your profile
-                                    <small>{{name}}</small>
-                                </p>
+                                <p>Your profile<small>{{name}}</small></p>
                             </li>
-                            <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
                                     <a href="#" class="btn btn-default btn-flat" style="font-size: 14px;">Profile</a>
@@ -78,11 +55,8 @@
             </div>
         </nav>
     </header>
-    <!-- Left side column. contains the logo and sidebar -->
     <aside class="main-sidebar">
-        <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
-            <!-- Sidebar user panel -->
             <div class="user-panel">
                 <div class="pull-left image" style="height:60px;width: 60px;">
                     <img [src]="avatar" class="img-circle" alt="User Image" style="height:45px;border:2px solid #fff;">
@@ -92,30 +66,20 @@
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
-            <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
-                <li class="header">LAOYOUT ADMIN</li>
-
+                <li routerLink="home" class="header" style="color:white; font-weight: bold;cursor: pointer;">LAYOUT ADMIN</li>
                 <li>
-                    <a routerLink = "category">
-                      <i style="font-size:18px;" class="fab fa-angular mr-2"></i> <span>Danh mục sản phẩm</span>
-                    </a>
+                    <a routerLink = "category"><i style="font-size:18px;" class="fab fa-angular mr-2"></i> <span>Danh mục sản phẩm</span></a>
                 </li>
                 <li>
-                    <a routerLink = "product">
-                        <i class="fa fa-th"></i> <span>Danh sách sản phẩm</span>
-                    </a>
+                    <a routerLink = "product"><i class="fa fa-th"></i> <span>Danh sách sản phẩm</span></a>
                 </li>
                 <li>
-                    <a routerLink = "tintuc">
-                      <i class="far fa-newspaper mr-2"></i> <span>Danh sách tin tức</span>
-                    </a>
+                    <a routerLink = "tintuc"><i class="far fa-newspaper mr-2"></i> <span>Danh sách tin tức</span></a>
                 </li>
                 <li>
-                    <a routerLink = "tintuc">
-                      <i style="font-size:18px;" class="far fa-user mr-2"></i> <span>Quản lý user</span>
+                    <a routerLink = "user"><i style="font-size:18px;" class="far fa-user mr-2"></i> <span>Quản lý user</span>
                         <span class="pull-right-container"></span>
-              <!--<small class="label pull-right bg-green">new</small>-->
                     </a>
                 </li>
                 <li>
@@ -125,16 +89,10 @@
                       <span class="pull-right-container"></span>
                   </a>
               </li>
-
-
             </ul>
         </section>
-        <!-- /.sidebar -->
     </aside>
-
-    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
                 Dashboard
@@ -145,32 +103,19 @@
                 <li class="active">Dashboard</li>
             </ol>
         </section>
-
-        <!-- Main content -->
         <section class="content">
            <router-outlet></router-outlet>
         </section>
-        <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
     <footer class="main-footer">
-        <div class="pull-right hidden-xs">
-            <b>Version</b> 2.4.13-pre
-        </div>
-        <strong>Copyright &copy; 2014-2022 <a href="https://adminlte.io">AdminLTE</a>.</strong> All rights
-        reserved.
+        <div class="pull-right hidden-xs"><b>Version</b> 2.4.13-pre</div>
+        <strong>Copyright &copy; 2014-2022 <a href="https://adminlte.io">AdminLTE</a>.</strong> All rights reserved.
     </footer>
     <div class="control-sidebar-bg"></div>
 </div>
-<!-- ./wrapper -->
-
-<!-- jQuery 3 -->
 <script src="../../assets/backend/layout1/js/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
 <script src="../../assets/backend/layout1/js/jquery-ui.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
 <script src="../../assets/backend/layout1/js/bootstrap.min.js"></script>
-<!-- AdminLTE App -->
 <script src="../../assets/backend/layout1/js/adminlte.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

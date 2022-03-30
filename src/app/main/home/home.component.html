@@ -1,1 +1,112 @@
-<h1>HOME COMPONENT</h1>
+<div class="page-content mt-4">
+  <section class="row">
+      <div class="col-12 col-lg-12">
+          <div class="row">
+              <div class="col-6 col-lg-3 col-md-6">
+                  <div class="card" style="border-left: 4px solid rgba(0, 0, 255, 0.747);">
+                      <div class="card-body px-3 py-4-5">
+                          <div class="row">
+                            <div class="col-md-8">
+                              <h6 class="text-muted font-semibold" style="color:rgba(0, 0, 255, 0.747)!important;">Doanh thu tháng ({{currentMonth}})</h6>
+                              <h6 class="font-extrabold mb-0">{{totalCurrMonth | currency:'VND'}}</h6>
+                            </div>
+                              <div class="col-md-3">
+                                  <div class="stats-icon purple">
+                                    <i class="fas fa-dollar-sign"></i>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-6 col-lg-3 col-md-6">
+                  <div class="card" style="border-left: 4px solid rgb(10, 243, 127);">
+                      <div class="card-body px-3 py-4-5">
+                          <div class="row">
+                                <div class="col-md-8">
+                                  <h6 class="text-muted font-semibold" style="color:rgb(10, 243, 127)!important;">Doanh thu năm</h6>
+                                  <h6 class="font-extrabold mb-0">{{totalYear | currency:'VND'}}</h6>
+                              </div>
+                              <div class="col-md-4">
+                                  <div class="stats-icon blue">
+                                    <i class="fas fa-hand-holding-usd"></i>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-6 col-lg-3 col-md-6">
+                  <div class="card" style="border-left: 4px solid rgb(17, 144, 230);">
+                      <div class="card-body px-3 py-4-5">
+                          <div class="row">
+                              <div class="col-md-8">
+                                  <h6 class="text-muted font-semibold" style="color:rgb(17, 144, 230)!important;">Khách hàng</h6>
+                                  <h6 class="font-extrabold mb-0">{{counter}}</h6>
+                              </div>
+                              <div class="col-md-4">
+                                <div class="stats-icon green">
+                                  <i class="fas fa-user-alt"></i>
+                                </div>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-6 col-lg-3 col-md-6">
+                  <div class="card" style="border-left: 4px solid orange">
+                      <div class="card-body px-3 py-4-5">
+                          <div class="row" routerLink="/main/order">
+                              <div class="col-md-8">
+                                  <h6 class="text-muted font-semibold" style="color:orange!important">Đơn hàng cần xử lý</h6>
+                                  <h6 class="font-extrabold mb-0">{{count}}</h6>
+                              </div>
+                              <div class="col-md-4">
+                                <div class="stats-icon red">
+                                  <i class="fas fa-shopping-cart"></i>
+                                </div>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-12">
+                  <div class="card chart">
+                      <div class="card-header">
+                          <h3 style="font-size: 16px;font-weight: bold">Biểu đồ doanh thu</h3>
+                      </div>
+                      <div class="card-body">
+                        <canvas id="myChart" width="400"></canvas>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <mat-card>
+            <div class="row">
+              <div class="col-sm-6">
+                <h3 class="text-center">Top 5 sản phẩm bán chạy</h3>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Tên sản phẩm</th>
+                      <th scope="col">Số lượng bán</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let x of product2">
+                      <th scope="row">{{x.id}}</th>
+                      <td>{{x.name}}</td>
+                      <td>{{x.count}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-sm-6"><canvas id="chart-line"></canvas></div>
+          </div>
+          </mat-card>
+      </div>
+  </section>
+</div>

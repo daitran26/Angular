@@ -23,7 +23,6 @@
               <div>
                 <img src="{{product.image}}" style="width:150px" />
               </div>
-              <!-- <button *ngIf="downloadUrl?!selectedFile:selectedFile" type="button" class="btn btn-outline-primary btn-lg ml-5"(click)="onUpload()">Upload</button> -->
           </div>
           <div class="form-group">
               <label for="exampleInputPassword1">Giá sản phẩm</label>
@@ -40,7 +39,7 @@
           <div class="form-group">
               <label for="exampleInputPassword1">Danh mục sản phẩm</label>
               <select name="category" style="padding:7px;width:250px;border-radius: 4px;margin-left: 16px;" [(ngModel)]="categoryId" required>
-                  <option *ngFor="let category of categories" [value]="category.id" [selected]="product.category.id == category.id">{{category.name}}</option>
+                  <option *ngFor="let category of categories" [value]="category.id" [selected]="product?.category?.id == category.id">{{category.name}}</option>
               </select>
           </div>
           <button type="submit" [disabled]="formAdd.invalid" class="btn btn-primary btn-lg">Sửa sản phẩm</button>

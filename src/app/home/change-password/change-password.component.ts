@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ChangePassword } from 'src/app/model/change-password';
+import { AlertService } from 'src/app/services/alert.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -12,7 +14,7 @@ export class ChangePasswordComponent implements OnInit {
   form:any = {};
   changePassword!:ChangePassword;
   status = 'Vui lòng nhập đầy đủ các trường để thay đổi mật khẩu';
-  constructor(private authService:AuthService) { }
+  constructor(private authService:AuthService,private router:Router,private alertService: AlertService) { }
 
   ngOnInit(): void {
   }
@@ -31,6 +33,8 @@ export class ChangePasswordComponent implements OnInit {
         }
         if(data!=null && JSON.stringify(data) == JSON.stringify(this.success)){
           this.status = 'Thay đổi mật khẩu thành công'
+          this.router.navigate(['/'])
+          this.alertService.success('Thay đổi mật khẩu thành công',{autoClose:true})
         }
       })
     }

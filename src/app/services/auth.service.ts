@@ -8,6 +8,7 @@ import { JwtRespone } from '../model/JwtRespone';
 import { SignInForm } from '../model/SignInForm';
 import { SignUpForm } from '../model/signUpForm';
 import { TokenDto } from '../model/TokenDto';
+import { User } from '../model/user';
 
 const cabecera = {headers: new HttpHeaders({'Content-Type' : 'application/json'})};
 @Injectable({
@@ -20,6 +21,7 @@ export class AuthService {
   private CHANGE_PASSWORD = environment.urlAPI + '/api/auth/change-password';
   private GET_USER = environment.urlAPI + '/api/auth/getuser';
   private LOGIN_GOOGLE = environment.urlAPI + '/api/auth/google';
+  private RESET_PASSWORD = environment.urlAPI + '/api/auth/reset-password';
   // http://localhost:8080/api/auth/google
   constructor(private http: HttpClient) { }
 
@@ -44,5 +46,28 @@ export class AuthService {
   }
   loginGoogle(tokenDto:TokenDto):Observable<any>{
     return this.http.post(this.LOGIN_GOOGLE,tokenDto,cabecera).pipe();
+  }
+  resetPassword(email:string):Observable<any>{
+    return this.http.post(this.RESET_PASSWORD,{username: email},cabecera).pipe();
+  }
+  doResetPassword(password: string, code: string): Observable<any> {
+    return this.http.post(`${environment.urlAPI}/api/auth/do-reset-password`, {
+      password: password,
+      code: code
+    }, cabecera);
+  }
+  pageUser(page: number, size: number): Observable<User[]>{
+    const url = `${environment.urlAPI}/api/auth/user?page=${page}&size=${size}`;
+    // http://localhost:8080/api/product/page?page=3
+    return this.http.get<any>(url).pipe();
+  }
+  getUserById(id:any):Observable<User>{
+    return this.http.get<any>(`${environment.urlAPI}/api/auth/user/${id}`).pipe();
+  }
+  deleteUser(id:any):Observable<any>{
+    return this.http.delete<any>(`${environment.urlAPI}/api/auth/delete/${id}`).pipe();
+  }
+  update(id:number,user:any):Observable<any>{
+    return this.http.put<any>(`${environment.urlAPI}/api/auth/change-role/${id}`,user).pipe();
   }
 }

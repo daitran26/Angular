@@ -52,7 +52,7 @@
     <div class="mid-header">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-3 logo" style="background:#0183BF; height:67px;margin-top: 14px!important;padding: 10px;border-radius: 5px;"> <a href="index.html" style="height:47px;"> <img src="https://msmobile.com.vn/images/config/logo.svg" style="height:47px;margin-left: 65px;" alt="DKT Store" title="DKT Store" class="img-responsive"> </a> </div>
+        <div class="col-xs-12 col-sm-12 col-md-3 logo" style="background:#0183BF; height:67px;margin-top: 14px!important;padding: 10px;border-radius: 5px;"> <a href="/" style="height:47px;"> <img src="https://msmobile.com.vn/images/config/logo.svg" style="height:47px;margin-left: 65px;" alt="DKT Store" title="DKT Store" class="img-responsive"> </a> </div>
         <div class="col-xs-12 col-sm-12 col-md-6 header-search">
           <div style="margin-top:25px;">
             <!-- <input type="text" (keyup)="searchForm($event)" value="" placeholder="Nhập từ khóa tìm kiếm..." id="typeahead-basic" class="form-control" [ngbTypeahead]="search1" [(ngModel)]="model"> -->
@@ -64,6 +64,8 @@
                        [formControl]="myControl"
                        [matAutocomplete]="auto"
                         (keyup)="onChange($event)"
+                        (change)="onchange($event)"
+                        [(ngModel)]="searchText"
                        >
                   <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
                   <mat-option *ngFor="let product of filteredOptions | async" [value]="product.name">

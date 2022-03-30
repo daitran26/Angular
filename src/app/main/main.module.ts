@@ -19,6 +19,10 @@ import { CategoryComponent } from './category/category/category.component';
 import { CategoryAddComponent } from './category/category-add/category-add.component';
 import { CategoryEditComponent } from './category/category-edit/category-edit.component';
 import { TintucEditComponent } from './tintuc/tintuc-edit/tintuc-edit.component';
+import { UserComponent } from './user/user/user.component';
+import { UserAddComponent } from './user/user-add/user-add.component';
+import { UserEditComponent } from './user/user-edit/user-edit.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +37,11 @@ import { TintucEditComponent } from './tintuc/tintuc-edit/tintuc-edit.component'
     CategoryComponent,
     CategoryAddComponent,
     CategoryEditComponent,
-    TintucEditComponent
+    TintucEditComponent,
+    UserComponent,
+    UserAddComponent,
+    UserEditComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,

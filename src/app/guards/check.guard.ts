@@ -11,7 +11,6 @@ export class CheckGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       let role = window.localStorage.getItem('Role_Key');
-      console.log(role)
       if(role == `[{"authority":"ADMIN"}]`){
         return true;
       }
