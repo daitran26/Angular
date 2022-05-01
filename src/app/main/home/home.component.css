@@ -1,6 +1,19 @@
 *{
   font-size: 14px;
 }
+.timkiem input{
+  width:120px;
+  height: 34px;
+    border-radius: 5px;
+    border-color: aliceblue;
+}
+.timkiem span{
+  width:80px;
+  font-size: 16px;
+  margin-left: 10px;
+  margin-top: 5px;
+  font-weight: bold;
+}
 .card i{
   font-size: 25px;
     color: #a9a9a9;

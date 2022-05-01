@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-8">
-        <h2 class="text-center">THÊM SẢN PHẨM</h2>
+        <h2 style="font-family: emoji; font-weight: 600;color: #2c7ead;" class="text-center">THÊM SẢN PHẨM</h2>
         <form #formAdd="ngForm" (ngSubmit)="formAdd.valid && save(formAdd.value)"> <!-- formAdd.valid && -->
             <div class="form-group">
                 <label for="exampleInputEmail1">Tên sản phẩm</label>
@@ -23,15 +23,35 @@
                 <img src="{{downloadUrl}}" style="width:100px" />
               </div>
             </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Giá</label>
-                <input type="text" class="form-control" #price = "ngModel" name="price" ngModel required>
-                <div *ngIf="price.errors && (price.dirty || price.touched)" class="text-danger">
-                  <div *ngIf="price.errors?.['required']">
-                      Giá không được để trống.
-                    </div>
-              </div>
-            </div>
+           <div class="soluong d-flex align-items-center mt-4 justify-content-between">
+            <div class="form-group d-flex align-items-center">
+              <label style="width: 60px;" class="mr-3" for="exampleInputPassword1">Đơn giá</label>
+              <input style="width:140px" type="number" class="form-control" #price = "ngModel" name="price" ngModel required>
+              <!-- <div *ngIf="price.errors && (price.dirty || price.touched)" class="text-danger">
+                <div *ngIf="price.errors?.['required']">
+                    Giá không được để trống.
+                  </div>
+            </div> -->
+          </div>
+          <div class="form-group d-flex align-items-center">
+              <label style="width: 70px;" class="mr-3" for="exampleInputPassword1">Số lượng</label>
+              <input style="width:90px" type="number" class="form-control" #soluong = "ngModel" name="soluong" ngModel required>
+              <!-- <div *ngIf="price.errors && (price.dirty || price.touched)" class="text-danger">
+                <div *ngIf="price.errors?.['required']">
+                    Giá không được để trống.
+                  </div>
+            </div> -->
+          </div>
+          <div class="form-group d-flex align-items-center">
+              <label style="width: 80px;" class="mr-4" for="exampleInputPassword1">Disscount(%)</label>
+              <input max="100" min="0" style="width:90px" type="number" class="form-control" #discount = "ngModel" name="discount" ngModel required>
+              <!-- <div *ngIf="price.errors && (price.dirty || price.touched)" class="text-danger">
+                <div *ngIf="price.errors?.['required']">
+                    Giá không được để trống.
+                  </div>
+            </div> -->
+          </div>
+           </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Tiêu đề</label>
                 <input type="text" class="form-control" name="title" ngModel #title = "ngModel" required>

@@ -9,9 +9,12 @@
         </div>
         <div class="col-xs-12 col-md-6 info">
           <h1 style="line-height: 30px!important;" itemprop="name">{{product.name}}</h1>
-          <p itemprop="price" class="price-box product-price-box"> <span class="special-price"> <span class="price product-price" style="text-decoration:line-through;color:rgb(209, 37, 37)"> {{product.price + 500000 | currency:'VND'}}</span></span></p>
-          <p itemprop="price" class="price-box product-price-box"> <span class="special-price"> <span class="price product-price"> {{product.price | currency:'VND'}}</span></span></p>
-        <button (click)="addToCart(product)" class="btn btn-outline-secondary btn-lg"><i class="fas fa-cart-plus mr-3"></i>Thêm vào giỏ hàng</button>
+          <p style="font-size: 20px !important;" itemprop="price" class="price-box product-price-box"> <span class="special-price"> <span class="price product-price" style="text-decoration:line-through;color:rgb(0, 0, 0)"> {{product.price | currency:'VND'}}<span style="font-size: 11px;
+            font-weight: normal;position: absolute; margin-top: -2px;" class="badge badge-danger ml-3">-{{product.discount}}%</span></span></span></p>
+          <p style="font-size: 21px !important;font-weight: bold;color: blue;" itemprop="price" class="price-box product-price-box"> <span class="special-price"> <span class="price product-price"> {{product.price - product.price*product.discount/100 | currency:'VND'}}</span></span></p>
+        <button *ngIf="product.soluong > 0" (click)="addToCart(product)" class="btn btn-outline-secondary btn-lg"><i class="fas fa-cart-plus mr-3"></i>Thêm vào giỏ hàng</button>
+        <button *ngIf="product.soluong == 0" [disabled]="true" class="btn btn-secondary btn-lg disabled">Hết hàng</button>
+        <p style="margin-top: 10px; font-size: 17px;font-family: auto;">Kho : {{product.soluong}}</p>
         <!-- rating -->
         <div style="border:1px solid #dddddd; margin-top: 15px;">
           <h4 style="padding-left: 10px;">Rating</h4>

@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -34,6 +33,12 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { TintucComponent } from './tintuc/tintuc/tintuc.component';
 import { TintucDetailComponent } from './tintuc/tintuc-detail/tintuc-detail.component';
 import { ContactComponent } from './contact/contact.component';
+import { NgxPayPalModule } from 'ngx-paypal';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { NgxSpinnerModule } from 'ngx-spinner';
+// import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { BrowserModule } from '@angular/platform-browser';
 export const homeRoutes: Routes = [
   {path: '',component:HomeComponent,children: [
     {path:'',component:ProductComponent},
@@ -84,10 +89,14 @@ export const homeRoutes: Routes = [
     MatAutocompleteModule,
     MatSelectModule,
     MatToolbarModule,
+    NgxSpinnerModule,
     ReactiveFormsModule,
     MatProgressBarModule,
     CarouselModule,
-    RouterModule.forChild(homeRoutes)
-  ]
+    NgxPayPalModule,
+    ModalModule.forRoot(),
+    RouterModule.forChild(homeRoutes),
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HomeModule { }

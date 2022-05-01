@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>MSmobile</title>
+    <title>MdShop</title>
     <link rel="shortcut icon" href="https://msmobile.com.vn/favicon.ico" type="image/x-icon" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
@@ -37,7 +37,7 @@
                 <span class="sr-only">Toggle Dropdown</span>
               </a>
               <div class="dropdown-menu">
-                <a class="dropdown-item" style="color:black" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Thông tin cá nhân</a>
+                <a class="dropdown-item" style="color:black" data-toggle="modal" data-target="#exampleModalCenter" data-whatever="@mdo">Thông tin cá nhân</a>
               <a class="dropdown-item" style="color:black" [routerLink]="['change-password']">Thay đổi mật khẩu</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" style="color:black" href="#" (click)="logOut($event)">Đăng xuất</a>
@@ -52,7 +52,9 @@
     <div class="mid-header">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-3 logo" style="background:#0183BF; height:67px;margin-top: 14px!important;padding: 10px;border-radius: 5px;"> <a href="/" style="height:47px;"> <img src="https://msmobile.com.vn/images/config/logo.svg" style="height:47px;margin-left: 65px;" alt="DKT Store" title="DKT Store" class="img-responsive"> </a> </div>
+        <div class="col-xs-12 col-sm-12 col-md-3 logo" style="background:#0183BF; height:67px;margin-top: 14px!important;padding: 10px;border-radius: 5px;"> <a href="/" style="height:47px;">
+        <img src="../../assets/images//logo.png" style="width: 105px;
+          margin-top: -21%;margin-left: 81%;" alt="DKT Store" title="DKT Store" class="img-responsive"> </a> </div>
         <div class="col-xs-12 col-sm-12 col-md-6 header-search">
           <div style="margin-top:25px;">
             <!-- <input type="text" (keyup)="searchForm($event)" value="" placeholder="Nhập từ khóa tìm kiếm..." id="typeahead-basic" class="form-control" [ngbTypeahead]="search1" [(ngModel)]="model"> -->
@@ -228,42 +230,48 @@
 
 <!-- Modal -->
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLabel">THÔNG TIN CÁ NHÂN</h3>
+        <h3 class="modal-title" id="exampleModalLabel">Thông tin cá nhân</h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span style="font-size: 30px;" aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <form #f="ngForm" (ngSubmit)="f.valid && update(f.value)" *ngIf="user">
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Tên của bạn</label>
-            <input type="text" class="form-control" id="recipient-name" name="name" [(ngModel)]="user.name" >
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Tài khoản</label>
-            <input type="text" class="form-control" id="recipient-name" name="username" [(ngModel)]="user.username" disabled>
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Email</label>
-            <input type="text" class="form-control" id="recipient-name" name="email" [(ngModel)]="user.email" disabled>
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Số điện thoại</label>
-            <input type="number" class="form-control" id="recipient-name" name="phone" [(ngModel)]="user.phone" required>
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Địa chỉ</label>
-            <input type="text" class="form-control" id="recipient-name" name="address" [(ngModel)]="user.address" required>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Đóng</button>
-            <button [disabled]="f.invalid" type="submit" class="btn btn-primary btn-lg">Cập nhật</button>
-          </div>
-        </form>
+      <div class="modal-body" style="display:flex;">
+        <div class="trai" *ngIf="user">
+          <a [routerLink]="['change-avatar']"><img style="width: 100px;border-radius: 50%; height: 100px;margin-left: 18px;margin-top: 95px;" [src]="user.avatar" alt=""></a>
+          <p style="font-size: 18px; font-weight: 600;color: dodgerblue;margin-top: 10px;margin-left: 10px;">{{user.name}}</p>
+        </div>
+        <div class="phai">
+          <form #f="ngForm" (ngSubmit)="f.valid && update(f.value)" *ngIf="user">
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Tên của bạn</label>
+              <input type="text" class="form-control" id="recipient-name" name="name" [(ngModel)]="user.name" >
+            </div>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Tài khoản</label>
+              <input type="text" class="form-control" id="recipient-name" name="username" [(ngModel)]="user.username" disabled>
+            </div>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Email</label>
+              <input type="text" class="form-control" id="recipient-name" name="email" [(ngModel)]="user.email" disabled>
+            </div>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Số điện thoại</label>
+              <input type="number" class="form-control" id="recipient-name" name="phone" [(ngModel)]="user.phone" required>
+            </div>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Địa chỉ</label>
+              <input type="text" class="form-control" id="recipient-name" name="address" [(ngModel)]="user.address" required>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Đóng</button>
+              <button [disabled]="f.invalid" type="submit" class="btn btn-primary btn-lg">Cập nhật</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
@@ -295,6 +303,17 @@
     <script type="text/javascript">
       $('.dropdown-toggle').dropdown()
       console.log($('.dropdown-toggle'));
+    </script>
+      <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/62668552b0d10b6f3e6f3ad9/1g1g7hjc9';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
     </script>
 </body>
 

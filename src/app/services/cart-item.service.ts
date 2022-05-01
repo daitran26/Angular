@@ -52,4 +52,8 @@ export class CartItemService {
       const url = `${this.cartApi}/checkout`;
       return this.http.post(url, null).pipe();
   }
+  checkout1(): Observable<any> {
+    const url = `${this.cartApi}/checkout1`;
+    return this.http.post(url, null).pipe();
+}
 }

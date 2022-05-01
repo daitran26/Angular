@@ -12,7 +12,7 @@ import { TokenService } from 'src/app/services/token.service';
   styleUrls: ['./product-detail.component.css']
 })
 export class ProductDetailComponent implements OnInit {
-  product!:Product;
+  product:any;
   id!:number;
   constructor(private productService: ProductService,
     private activatedRoute:ActivatedRoute,private cartItemService: CartItemService,private tokenService:TokenService,private router:Router) { }

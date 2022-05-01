@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -28,7 +28,9 @@ import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-logi
 import {GoogleLoginProvider,FacebookLoginProvider} from 'angularx-social-login';
 import { ResetPasswordComponent } from './resetpassword/reset-password/reset-password.component';
 import { VerifyResetPasswordComponent } from './resetpassword/verify-reset-password/verify-reset-password.component';
-
+import { NgxPayPalModule } from 'ngx-paypal';
+import { NgxSpinnerModule } from 'ngx-spinner';
+// import { NgxSpinnerModule } from "ngx-spinner";
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,9 +58,11 @@ import { VerifyResetPasswordComponent } from './resetpassword/verify-reset-passw
     MatToolbarModule,
     ReactiveFormsModule,
     SocialLoginModule,
+    NgxPayPalModule,
+    NgxSpinnerModule,
+    NgbModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     RouterModule.forRoot(appRoutes),
-    NgbModule,
   ],
   providers: [
     httpInterceptorProvider,
@@ -79,6 +83,7 @@ import { VerifyResetPasswordComponent } from './resetpassword/verify-reset-passw
       } as SocialAuthServiceConfig,
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }

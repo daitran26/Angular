@@ -14,8 +14,8 @@ export class OrderService {
     return this.http.get(`${this.orderApi}?page=${page}&size=${size}`).pipe();
   }
 
-  show(id:number): Observable<Order> {
-      return this.http.get<Order>(`${this.orderApi}/${id}`).pipe();
+  show(id:number): Observable<any> {
+      return this.http.get<any>(`${this.orderApi}/${id}`).pipe();
   }
 
   cancel(id:number): Observable<Order> {
@@ -28,4 +28,7 @@ export class OrderService {
   getAll():Observable<any>{
     return this.http.get<any>(`${environment.urlAPI}/order/all`).pipe();
   }
+  finishp(id:number): Observable<Order> {
+    return this.http.put<Order>(`${this.orderApi}/finishp/${id}`, null).pipe();
+}
 }

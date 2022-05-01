@@ -44,12 +44,14 @@ update() {
 
 
 cancel(order: any) {
+  let c = confirm("Bạn có muốn hủy đơn hàng này không?");
+        if (c) {
   this.orderService.cancel(order.id).subscribe(res => {
       if (res) {
           order.orderStatus = res.orderStatus;
       }
   });
-}
+}}
 
 finish(order: any) {
   this.orderService.finish(order.id).subscribe(res => {
@@ -57,5 +59,8 @@ finish(order: any) {
           order.orderStatus = res.orderStatus;
       }
   })
+}
+counter(i = 1) {
+  return new Array(i);
 }
 }

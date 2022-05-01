@@ -10,3 +10,16 @@
   height: 33.5px;
   padding:0 11px;
 }
+.fas{
+  font-size: 16px;
+  margin-right: 5px;
+}
+.table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
+  border: 1px solid #ddd;
+  /* border-left: none; */
+  border-color: aliceblue;
+}
+table td{
+  font-family: segoe UI;
+    font-weight: 400;
+}

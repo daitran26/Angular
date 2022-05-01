@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SignUpForm } from 'src/app/model/signUpForm';
 import { AlertService } from 'src/app/services/alert.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { DataShareService } from 'src/app/services/data-share.service';
 
 @Component({
   selector: 'app-verify-reset-password',
@@ -18,13 +19,20 @@ export class VerifyResetPasswordComponent implements OnInit {
   hide1=true
   code:any;
   signUpForm!:SignUpForm;
+  info:any;
 
   registerForm!: FormGroup;
   submitted = false;
   constructor(private authService: AuthService,private fb: FormBuilder,private router:Router,private activatedRoute:ActivatedRoute,
-    private alertService:AlertService) { }
+    private alertService:AlertService,private dataShareService:DataShareService) { }
 
   ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe(params => {
+        this.authService.usercode(params['code']).subscribe(data=>{
+          this.info = data
+          console.log("first",data)
+        })
+    })
     this.registerForm = this.fb.group({
       password: ['', Validators.compose([Validators.required, this.patternValidator()])],
       confirmPassword: ['', [Validators.required]],

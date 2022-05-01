@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
 import { TokenDto } from 'src/app/model/TokenDto';
 import { AuthService } from 'src/app/services/auth.service';
+import { DataShareService } from 'src/app/services/data-share.service';
 import { TokenService } from 'src/app/services/token.service';
 
 @Component({
@@ -34,7 +35,7 @@ export class ResetPasswordComponent implements OnInit {
   constructor(private authService:AuthService,
     private tokenService:TokenService,
     private router:Router,
-    private socialAuthService: SocialAuthService,private fb: FormBuilder) { }
+    private socialAuthService: SocialAuthService,private fb: FormBuilder,private dataShareService:DataShareService) { }
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -58,11 +59,12 @@ export class ResetPasswordComponent implements OnInit {
           this.type = 'danger'
           this.status = "Sai email hoặc email chưa được đăng ký!"
         }
-        if(JSON.stringify(data)==JSON.stringify(this.success)){
+        if(JSON.stringify(data?.username)==JSON.stringify(this.registerForm.value.email)){
           this.isLogged = false;
           this.checkAccount = false;
           this.type = 'success'
           this.status = 'Đã gửi email xác nhận. Vui lòng kiểm tra email để thay đổi mật khẩu'
+          this.dataShareService.passDataObject(data)
         }
       },err=>{
         this.checkAccount = false;

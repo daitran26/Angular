@@ -1,28 +1,36 @@
 <a class="btn btn-outline-success btn-lg mb-3" [routerLink]="['product-add']"><i class="fas fa-plus-circle mr-2"></i>Thêm sản phẩm</a>
-<mat-card>
-<table class="table">
+<div class="panel panel-info">
+  <div class="panel-heading">Danh sách sản phẩm</div>
+  <div class="panel-body">
+<table class="table table-bordered table-hover">
     <thead>
       <tr>
         <th scope="col">ID</th>
-        <th scope="col">Tên sản phẩm</th>
         <th scope="col">Ảnh</th>
+        <th scope="col">Tên sản phẩm</th>
         <th scope="col">Giá</th>
-        <th>Action</th>
+        <th scope="col">Số lượng</th>
+        <th scope="col">Discount(%)</th>
+        <th>Hành dộng</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let product of page?.content">
         <th scope="row">{{product.id}}</th>
-        <td>{{product.name}}</td>
-        <td><img style="border-radius: 10px;" src="{{product.image}}" alt="image" width="100"/></td>
-        <td>{{product.price | currency:'VND'}}</td>
+        <td><img style="border-radius: 10px;" src="{{product.image}}" alt="image" width="60"/></td>
+        <td style="font-family: system-ui; font-size: 14px;">{{product.name}}</td>
+        <td style="font-family: system-ui; font-size: 14px;">{{product.price | currency:'VND'}}</td>
+        <td style="font-family: system-ui; font-size: 14px;">{{product.soluong}}</td>
+        <td style="font-family: system-ui; font-size: 14px;">{{product.discount}}</td>
         <td>
-            <a title="Sửa sản phẩm" [routerLink]="['/main/product-edit', product.id]" class="btn btn-primary mr-3 text-white"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-            <button title="Xóa sản phẩm" type="button" class="btn btn-primary" (click)="openModal(product.id)"> <i class="fa fa-trash" aria-hidden="true"></i></button>
+            <a title="Sửa sản phẩm" [routerLink]="['/main/product-edit', product.id]" class="btn btn-success mr-3 text-white"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+            <button title="Xóa sản phẩm" type="button" class="btn btn-success" (click)="openModal(product.id)"> <i class="fa fa-trash" aria-hidden="true"></i></button>
         </td>
       </tr>
     </tbody>
   </table>
+  </div>
+</div>
   <div class="col-md-12 column">
     <ul class="pagination justify-content-end">
         <li class="page-item" *ngIf="page?.number > 0; else prev">
@@ -49,7 +57,7 @@
       </ng-template>
     </ul>
   </div>
-</mat-card>
+
 <ng-template #template>
   <div class="modal-header">
     <h4 class="modal-title pull-left" style="font-size: 20px;">Thông báo</h4>

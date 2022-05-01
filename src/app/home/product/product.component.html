@@ -4,7 +4,7 @@
       <div class="col-md-12"><iframe src="https://www.youtube.com/embed/KzHaGH1cOx4" title="YouTube video player" frameborder="0" class="img-thumbnail" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
     </div>
     <div class="row" style="margin-bottom: 5px;height:100px">
-      <div class="col-md-12"><img src="https://msmobile.com.vn/images/banners/compress/redmi-note-9s_1605706094.png" class="img-thumbnail" style="height:130px;"></div>
+      <div class="col-md-12"><img src="https://msmobile.com.vn/images/banners/compress/z3338926009542_157213d9595b147086609d0a0d25081b_1649902553.jpg" class="img-thumbnail" style="height:130px;"></div>
     </div>
   </div>
   <div class="col-md-9">
@@ -24,7 +24,7 @@
           <!-- Wrapper for slides -->
           <div class="carousel-inner">
             <div class="item active"> <img src="https://msmobile.com.vn/images/slideshow/2020/11/16/compress/normal-note20_1605542278.png" alt="Los Angeles"> </div>
-            <div class="item"> <img src="https://msmobile.com.vn/images/slideshow/2021/11/29/compress/146517901_236305711409820_24497348972374134_n_1638183617.jpg" alt="Los Angeles"> </div>
+            <div class="item"> <img src="https://msmobile.com.vn/images/slideshow/2022/04/07/compress/830-300-830x300-3_1649296466.png" alt="Los Angeles"> </div>
             <div class="item"> <img src="https://msmobile.com.vn/images/slideshow/2022/01/13/compress/anhbixiaomi_1642055221.png" alt="Chicago"> </div>
             <div class="item"> <img src="https://msmobile.com.vn/images/slideshow/2022/01/13/compress/anhbiadienthoai_1642053110.png" alt="New York"> </div>
           </div>
@@ -42,7 +42,7 @@
     <div class="tabs-container">
       <div class="row" style="margin-top:10px;">
         <div class="col-lg-10 mt-5">
-          <h2>HOT PRODUCT</h2>
+          <h2>NEW PRODUCT</h2>
         </div>
         <div class="clearfix"></div>
       </div>
@@ -54,14 +54,16 @@
           <div class="col-xs-6 col-md-3 col-sm-6 " *ngFor="let product of products">
             <div class="product-grid" id="product-1168979">
               <div class="image" style="height:250px;"> <a [routerLink]="['product/product-detail',product.id]"><img [src]="product.image" title="{{product.title}}" alt="{{product.title}}" class="img-responsive"></a> </div>
+              <span *ngIf="product.discount > 0" style="font-size: 13px; font-weight: normal;position: absolute;top:0;right:15px;opacity: 0.75;" class="badge badge-danger ml-3">-{{product.discount}}%</span>
               <div class="info">
                 <h3 class="name"><a [routerLink]="['product/product-detail',product.id]">{{product.name}}</a></h3>
-                <p class="price-box"> <span class="special-price"> <span class="price product-price" style="text-decoration:line-through;"> {{product.price + 500000 | currency:'VND'}}</span></span> </p>
-                <p class="price-box"> <span class="special-price"> <span class="price product-price"> {{product.price | currency:'VND'}} </span></span> </p>
+                <p class="price-box"> <span class="special-price"> <span class="price product-price" style="text-decoration:line-through;"> {{product.price | currency:'VND'}}</span></span> </p>
+                <p class="price-box"> <span class="special-price"> <span class="price product-price"> {{product.price - product.price*product.discount/100 | currency:'VND'}} </span></span> </p>
                 <p class="price-box"> <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a> <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a> <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a> <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a> <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a> </p>
                 <div class="action-btn">
                   <form>
-                    <button (click)="addToCart(product)" class="button">Add to Cart</button>
+                    <button *ngIf="product.soluong > 0" (click)="addToCart(product)" class="button">Add to Cart</button>
+                    <button *ngIf="product.soluong == 0" [disabled]="true" class="btn btn-secondary btn-lg disabled">Hết hàng</button>
                   </form>
                 </div>
               </div>
@@ -91,14 +93,16 @@
           <div class="col-xs-6 col-md-3 col-sm-6 " *ngFor="let ip of iphone">
             <div class="product-grid" id="product-1168979">
               <div class="image" style="height:250px;"> <a [routerLink]="['product/product-detail',ip.id]"><img src="{{ip.image}}" title="product ..." alt="product ..." class="img-responsive"></a> </div>
+              <span *ngIf="ip.discount > 0" style="font-size: 13px; font-weight: normal;position: absolute;top:0;right:15px;opacity: 0.75;" class="badge badge-danger ml-3">-{{ip.discount}}%</span>
               <div class="info">
                 <h3 class="name"><a [routerLink]="['product/product-detail',ip.id]">{{ip.name}}</a></h3>
-                <p class="price-box"> <span class="special-price"> <span class="price product-price" style="text-decoration:line-through;"> {{ip.price + 500000 | currency:'VND'}}</span></span> </p>
-                <p class="price-box"> <span class="special-price"> <span class="price product-price">  {{ip.price | currency:'VND'}} </span> </span> </p>
+                <p class="price-box"> <span class="special-price"> <span class="price product-price" style="text-decoration:line-through;"> {{ip.price | currency:'VND'}}</span></span> </p>
+                <p class="price-box"> <span class="special-price"> <span class="price product-price">  {{ip.price - ip.price*ip.discount/100 | currency:'VND'}} </span> </span> </p>
                 <p class="price-box"> <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a> <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a> <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a> <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a> <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a> </p>
                 <div class="action-btn">
                   <form>
-                    <button (click)="addToCart(ip)" class="button">Add to Cart</button>
+                    <button *ngIf="ip.soluong > 0" (click)="addToCart(ip)" class="button">Add to Cart</button>
+                    <button *ngIf="ip.soluong == 0" [disabled]="true" class="btn btn-secondary btn-lg disabled">Hết hàng</button>
                   </form>
                 </div>
               </div>
@@ -125,14 +129,16 @@
           <div class="col-xs-6 col-md-3 col-sm-6 " *ngFor="let ip of xiaomi">
             <div class="product-grid" id="product-1168979">
               <div class="image" style="height:250px;"> <a [routerLink]="['product/product-detail',ip.id]"><img src="{{ip.image}}" title="product ..." alt="product ..." class="img-responsive"></a> </div>
+              <span *ngIf="ip.discount > 0" style="font-size: 13px; font-weight: normal;position: absolute;top:0;right:15px;opacity: 0.75;" class="badge badge-danger ml-3">-{{ip.discount}}%</span>
               <div class="info">
                 <h3 class="name"><a [routerLink]="['product/product-detail',ip.id]">{{ip.name}}</a></h3>
-                <p class="price-box"> <span class="special-price"> <span class="price product-price" style="text-decoration:line-through;"> {{ip.price + 500000 | currency:'VND'}}</span></span> </p>
-                <p class="price-box"> <span class="special-price"> <span class="price product-price">  {{ip.price | currency:'VND'}} </span> </span> </p>
+                <p class="price-box"> <span class="special-price"> <span class="price product-price" style="text-decoration:line-through;"> {{ip.price | currency:'VND'}}</span></span> </p>
+                <p class="price-box"> <span class="special-price"> <span class="price product-price">  {{ip.price - ip.price*ip.discount/100 | currency:'VND'}} </span> </span> </p>
                 <p class="price-box"> <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a> <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a> <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a> <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a> <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a> </p>
                 <div class="action-btn">
                   <form>
-                    <button (click)="addToCart(ip)" class="button">Add to Cart</button>
+                    <button *ngIf="ip.soluong > 0" (click)="addToCart(ip)" class="button">Add to Cart</button>
+                    <button *ngIf="ip.soluong == 0" [disabled]="true" class="btn btn-secondary btn-lg disabled">Hết hàng</button>
                   </form>
                 </div>
               </div>

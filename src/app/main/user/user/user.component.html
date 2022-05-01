@@ -19,7 +19,7 @@
               <td>{{cate.email}}</td>
               <td>{{cate.phone}}</td>
               <td>{{cate.address}}</td>
-              <td>{{cate?.roles[0].name}}</td>
+              <td>{{cate?.roles[0]?.name}}</td>
               <td>
                 <a title="Sửa tài khoản" [routerLink]="['/main/user', cate.username]" class="btn btn-primary mr-3 text-white"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                 <button title="Xóa tài khoản" type="button" class="btn btn-primary" (click)="delete(cate.id)"> <i class="fa fa-trash" aria-hidden="true"></i></button>

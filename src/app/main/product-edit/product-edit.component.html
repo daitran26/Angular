@@ -21,13 +21,23 @@
             <input type="file" class="form-control-file" id="exampleFormControlFile1" (change)="onFileChange($event)" name="image" #image="ngModel" ngModel>
             <mat-spinner *ngIf="checkUpLoad" style="transform:scale(0.4);stroke: rgb(21, 238, 39);width: 100px;padding: -20px;"></mat-spinner>
               <div>
-                <img src="{{product.image}}" style="width:150px" />
+                <img src="{{product.image}}" style="width:70px" />
               </div>
           </div>
-          <div class="form-group">
-              <label for="exampleInputPassword1">Giá sản phẩm</label>
-              <input type="number" class="form-control" #name1 = "ngModel" name="price" [(ngModel)] = "product.price">
+          <div class="soluong d-flex align-items-center mt-4 justify-content-between">
+            <div class="form-group d-flex align-items-center">
+              <label style="width: 60px;" class="mr-3" for="exampleInputPassword1">Đơn giá</label>
+              <input style="width:140px" type="number" class="form-control" #price = "ngModel" name="price" [(ngModel)] = "product.price" required>
           </div>
+          <div class="form-group d-flex align-items-center">
+              <label style="width: 70px;" class="mr-3" for="exampleInputPassword1">Số lượng</label>
+              <input style="width:90px" type="number" class="form-control" #soluong = "ngModel" name="soluong" [(ngModel)] = "product.soluong" required>
+          </div>
+          <div class="form-group d-flex align-items-center">
+              <label style="width: 80px;" class="mr-4" for="exampleInputPassword1">Disscount(%)</label>
+              <input max="100" min="0" style="width:90px" type="number" class="form-control" #discount = "ngModel" name="discount" [(ngModel)] = "product.discount" required>
+          </div>
+           </div>
           <div class="form-group">
               <label for="exampleInputPassword1">Tiêu đề</label>
               <input type="text" class="form-control" name="title" [(ngModel)] = "product.title">
@@ -42,7 +52,7 @@
                   <option *ngFor="let category of categories" [value]="category.id" [selected]="product?.category?.id == category.id">{{category.name}}</option>
               </select>
           </div>
-          <button type="submit" [disabled]="formAdd.invalid" class="btn btn-primary btn-lg">Sửa sản phẩm</button>
+          <button type="submit" [disabled]="formAdd.invalid" class="btn btn-success btn-lg font-weight-bold">Sửa sản phẩm</button>
         </form>
       </div>
     </div>

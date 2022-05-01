@@ -45,7 +45,7 @@ export class UserComponent implements OnInit {
         if (c) {
             this.authService.deleteUser(id).subscribe(response => {
                 if (response != null) {
-                    console.log("Delete suceessfully")
+                    console.log(response)
                 }
             },err => console.log(err))
             this.router.navigate(['/main/user'])

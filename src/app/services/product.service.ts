@@ -14,7 +14,7 @@ export class ProductService {
   getListProducts():Observable<Product[]>{
     return this.http.get<any>(`${this.urlAPI}/api/product/all`).pipe();
   }
-  getProductById(id:number):Observable<Product>{
+  getProductById(id:number):Observable<any>{
     return this.http.get<any>(`${this.urlAPI}/api/product/${id}`).pipe();
   }
   getProductByCategoryId(id:number): Observable<Product[]>{

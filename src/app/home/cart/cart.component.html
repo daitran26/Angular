@@ -1,9 +1,11 @@
 <h1 align="center" class="display-4 mb-5">Giỏ hàng</h1>
 
 <!--Cart Detail Table-->
-<table class="table table-striped text-center">
+<table class="table table-bordered text-center" *ngIf="productsInOrder?.length > 0; else empty">
     <thead>
-    <tr>
+    <tr style="background: #0183bf;
+    color: white;">
+      <th>#</th>
         <th scope="col">Ảnh</th>
         <th scope="col">Tên sản phẩm</th>
         <th scope="col">Giá</th>
@@ -15,15 +17,16 @@
     </thead>
     <tbody>
 
-    <tr *ngFor="let productInOrder of productsInOrder">
+    <tr *ngFor="let productInOrder of productsInOrder;let i = index">
+      <th>{{i+1}}</th>
         <th class="align-middle" scope="row">
-            <a routerLink="/product/product-detail/{{productInOrder.id}}"><img height="100px"
+            <a routerLink="/product/product-detail/{{productInOrder.id}}"><img height="70px"
                                                                        src="{{productInOrder.image}}"
                                                                        alt="{{productInOrder.name}}"></a>
         </th>
         <td class="align-middle"><a style="font-size: 14px;color: black"
                 routerLink="/product/product-detail/{{productInOrder.id}}">{{productInOrder.name}}</a></td>
-        <td class="align-middle">{{productInOrder.price | currency}}</td>
+        <td class="align-middle">{{productInOrder.price | currency:'VND'}}</td>
 
         <td class="align-middle">
             <a (click)="minusOne(productInOrder)" class="nut"><i class="fa fa-minus"></i></a>
@@ -42,20 +45,71 @@
 
         <td class="align-middle" style="font-size: 14px;font-weight: bold;color:rgba(38, 0, 255, 0.692);">{{productInOrder.price * productInOrder.count|currency:'VND'}}</td>
         <td class="align-middle">
-            <a (click)="remove(productInOrder)" routerLink="./"><i style="font-size: 14px;" class="fas fa-trash-alt"></i></a>
+            <a title="Xóa khỏi giỏ hàng" (click)="remove(productInOrder)" routerLink="./"><i style="font-size: 14px;color: green;background:rgb(247 241 241);padding:7px;" class="fas fa-trash-alt"></i></a>
         </td>
     </tr>
     </tbody>
 </table>
 
 <div *ngIf="productsInOrder?.length > 0; else empty">
-    <a style="font-size: 16px;" class="ml-4" routerLink="/product/category/all"><i class="fas fa-exchange-alt mr-3"></i>Tiếp tục mua hàng</a>
+    <a style="font-size: 14px;" class="btn btn-info ml-4" routerLink="/product/category/all"><i class="fas fa-undo-alt mr-2"></i>Tiếp tục mua hàng</a>
     <h5 class="float-right" style="display: inline;font-size: 16px;font-weight: 600;color:rgb(66, 66, 196);">Tổng tiền: {{total | currency:'VND'}}</h5>
     <br>
-    <button (click)="checkout()" style="margin-right: -13%;" class="btn btn-success float-right btn-lg mt-4">Thanh toán</button>
+    <div style="width:250px;display: inline-block;margin-top: 17px;">
+      <p style="font-family: serif;font-size: 17px;">Thanh toán online với</p>
+      <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+    </div>
+    <div style="width: 361px; float: right;margin-top: 24px;">
+      <p style="font-family: serif;font-size: 17px;">Hoặc thanh toán khi nhận hàng</p>
+    <button (click)="checkout()" class="btn btn-info float-right btn-lg"><i class="fas fa-check mr-3"></i>Đặt hàng ngay</button>
+    </div>
 </div>
 <ng-template #empty>
     <h4 class="text-muted text-center"><img routerLink="/product/category/all" style="width: 61%;cursor: pointer;" src="https://cdn.dribbble.com/users/1010436/screenshots/11302442/empty_cart.jpg" alt=""></h4>
 </ng-template>
 
+<ngx-spinner
+              bdColor = "rgba(0, 0, 0, 0.8)"
+              size = "medium"
+              color = "#fff"
+              type = "ball-spin"
+              [fullScreen] = "true">
+              <h2 style="color: white" > Loading... </h2>
+</ngx-spinner>
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left" style="font-size: 18px;">Thanh toán thành công</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" style="font-size:20px;"><i class="fas fa-times"></i></span>
+    </button>
+  </div>
+  <div class="modal-body"style="width: 100%;">
+    <h3>Thông tin thanh toán</h3>
+    <table>
+      <tr>
+        <td>Tên khách hàng</td>
+        <td>{{payments?.payer?.name?.given_name}} {{payments?.payer?.name?.surname}}</td>
+      </tr>
+      <tr>
+        <td>Thời gian</td>
+        <td>{{payments?.create_time | date:'medium'}}</td>
+      </tr>
+      <tr><h3>Thông tin đơn hàng</h3></tr>
+      <tr>
+        <td>Tên sản phẩm</td>
+        <td>Số lượng</td>
+      </tr>
+      <tr *ngFor = "let x of payments?.purchase_units[0].items">
+        <td>{{x?.name}}</td>
+        <td style="padding-left: 10%;">{{x?.quantity}}</td>
+      </tr>
+      <tr><td><hr></td><td><hr></td></tr>
+      <h3>Tổng thanh toán: {{payments?.purchase_units[0]?.amount?.value | currency:'USD'}}</h3>
+    </table>
+    <span class="float-right">
+    <button type="button" class="btn btn-primary btn-lg" (click)="decline()" >Thoát</button>
+    </span>
+  </div>
+</ng-template>
 
+sb-ka6pf15753361@personal.example.com

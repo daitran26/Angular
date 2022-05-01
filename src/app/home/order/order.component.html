@@ -1,8 +1,9 @@
-<h1 align="center" class="display-4 mb-5">Orders</h1>
+<h4 style="font-weight: bold;font-family: auto;color: #0183bf;border-bottom: solid 1px #ebebeb;" class="display-5 mb-5">Đơn hàng của bạn</h4>
 
-<table class="table table-striped text-center">
+<table *ngIf="page?.content.length > 0; else empty" class="table table-bordered text-center">
     <thead>
-    <tr>
+    <tr style="background: #0183bf;
+    color: white;">
         <th scope="col">Order #</th>
         <th scope="col">Tên khách hàng</th>
         <th scope="col">Email</th>
@@ -11,7 +12,7 @@
         <th scope="col">Tổng tiền</th>
         <th scope="col">Ngày đặt</th>
         <th scope="col">Tình trạng</th>
-        <th scope="col"></th>
+        <th scope="col">Hành động</th>
     </tr>
     </thead>
     <tbody>
@@ -26,11 +27,44 @@
         <td class="align-middle">{{order.buyerAddress}}</td>
         <td class="align-middle">{{order.orderAmount | currency:'VND'}}</td>
         <td class="align-middle">{{order.createTime | date:'dd/MM/yyyy | HH:mm:ss'}}</td>
-        <td class="align-middle">{{orderStatus[order.orderStatus]}}</td>
-        <td class="align-middle">
-            <a style="display:block" routerLink="/order-detail/{{order.id}}">Xem đơn hàng</a>
-            <a *ngIf="order.orderStatus == 0" style="display: block" (click)="cancel(order)" routerLink="./">Hủy đơn hàng</a>
+        <td class="align-middle" *ngIf="order.paypal == 0; else next">{{orderStatus[order.orderStatus]}}</td>
+        <ng-template #next>
+          <td class="align-middle">Thanh toán online</td>
+        </ng-template>
+        <td class="align-middle d-flex">
+            <a title="Xem" style="display:block;border:none" routerLink="/order-detail/{{order.id}}"><i class="fas fa-eye mr-4"></i></a>
+            <a title="Xóa" *ngIf="order.orderStatus == 0" style="display: block" (click)="cancel(order)" routerLink="./"><i class="fas fa-times-circle"></i></a>
         </td>
     </tr>
     </tbody>
 </table>
+<ng-template #empty>
+  <h2>Bạn chưa có đơn hàng nào</h2>
+</ng-template>
+<div class="col-md-12 column">
+  <ul class="pagination justify-content-end">
+      <li class="page-item" *ngIf="page?.number > 0; else prev">
+          <a class="page-link" [routerLink]="['./']" [queryParams]="{ page: page?.number, size: page?.size }" >Previous</a>
+    </li>
+      <ng-template #prev>
+          <li class="page-item  disabled"><a class="page-link">Previous</a></li>
+      </ng-template>
+
+      <ng-container *ngFor="let item of counter(page?.totalPages); let i = index">
+          <li class="page-item" *ngIf="page && page.number != i; else active">
+            <a class="page-link " routerLink="./" [queryParams]="{ page: i + 1, size: page?.size }">{{ i + 1 }}</a >
+        </li>
+          <ng-template #active>
+              <li class="page-item active ">
+                  <button class="page-link " disabled>{{ i + 1 }}</button>
+              </li>
+          </ng-template>
+      </ng-container>
+      <li class="page-item" *ngIf="page?.number + 1 < page?.totalPages; else next">
+          <a class="page-link" [routerLink]="['./']" [queryParams]="{ page: page?.number + 2,size: page?.size}">Next</a>
+    </li>
+    <ng-template #next>
+        <li class="page-item disabled "><a class="page-link">Next</a></li>
+    </ng-template>
+  </ul>
+</div>

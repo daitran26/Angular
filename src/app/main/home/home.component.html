@@ -71,6 +71,13 @@
                   </div>
               </div>
           </div>
+          <div class="row mt-3 d-flex timkiem">
+            <form #f="ngForm" (ngSubmit)="submit()" style = "width: 44%;">
+              <span>Từ ngày </span><input name="tungay" type="date" [(ngModel)]="date.tungay" required><span>đến ngày </span>
+              <input name="denngay" type="date" [(ngModel)]="date.denngay" required>
+            <button [disabled]="f.invalid" type="submit" style="font-size: 15px;width:70px;" class="btn btn-info ml-3"><i style="font-size: 14px;" class="fas fa-search mr-2"></i>Tìm</button>
+          </form>
+          </div>
           <div class="row">
               <div class="col-12">
                   <div class="card chart">
@@ -91,13 +98,15 @@
                   <thead>
                     <tr>
                       <th scope="col">#</th>
+                      <th>Ảnh</th>
                       <th scope="col">Tên sản phẩm</th>
                       <th scope="col">Số lượng bán</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let x of product2">
-                      <th scope="row">{{x.id}}</th>
+                    <tr *ngFor="let x of product2;let i = index">
+                      <th scope="row">{{i+1}}</th>
+                      <td><img src="{{x.image}}" alt="" height="40"></td>
                       <td>{{x.name}}</td>
                       <td>{{x.count}}</td>
                     </tr>
@@ -110,3 +119,52 @@
       </div>
   </section>
 </div>
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left" style="font-size: 18px;">Thống kê doanh thu</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" style="font-size:20px;"><i class="fas fa-times"></i></span>
+    </button>
+  </div>
+  <div class="modal-body"style="width: 100%;">
+    <div id="excel-table">
+      <tr><td colspan="4" style="text-align: center;"><h2 style="font-size: 20px;font-weight: bold;">CỬA HÀNG ĐIỆN THOẠI MdShop</h2></td></tr>
+      <tr class="time" style="display: flex; line-height: 16px;"> <td  style="display: flex;" colspan="4"><p class="mr-3">Thời gian thống kê : Từ</p>
+        <h4>{{date.tungay | date:'dd/MM/yyyy'}}</h4><p class="mr-3 ml-3"> đến</p> <h4>{{date.denngay | date:'dd/MM/yyyy'}}</h4></td></tr>
+      <tr class="time" style="display: flex;line-height: 16px;"><td  style="display: flex;" colspan="4"><p>Ngày thông kê :</p> <h4 class="ml-3">{{time | date:'dd/MM/yyyy'}}</h4></td></tr>
+    <table class="table table-bordered" *ngIf="thongke.length > 0; else empty">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Tên sản phẩm</th>
+          <th scope="col">Đơn giá</th>
+          <th scope="col">Tổng số lượng bán</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of thongke; let i = index">
+          <th scope="row">{{i+1}}</th>
+          <td>{{p.name}}</td>
+          <td>{{p.price | currency:'VND'}}</td>
+          <td>{{p.count}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <tr colspan="4"><td style="display: flex;" colspan="4"><span style="font-size: 18px;font-weight: 600;font-family: ui-monospace;">Tổng doanh thu : </span><p style="font-size: 18px;font-weight: 600;color: #36ea36;
+      font-family: ui-monospace;">{{tong | currency:'VND'}}</p></td></tr>
+  </div>
+    <ng-template #empty><div class="text-center"><i style="color: #f0f022;
+      font-size: 34px;
+      border: 2px solid #feff33;
+      padding: 20px;
+      border-radius: 50%;
+      margin: auto;" class="fas fa-exclamation-triangle"></i><p style="    font-size: 17px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: gray;">Không có doanh thu trong khoảng thời gian này!</p></div></ng-template>
+    <span class="float-right mb-3">
+      <button (click)="exportexcel()" *ngIf="thongke.length > 0" class="btn btn-info btn-lg mr-3">Export to Excel</button>
+    <button type="button" class="btn btn-primary btn-lg" (click)="decline()" >Thoát</button>
+    </span>
+  </div>
+</ng-template>

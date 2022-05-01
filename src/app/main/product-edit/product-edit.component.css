@@ -1,3 +1,8 @@
 textarea,input{
   font-size: 14px;
 }
+form .form-group label{
+  font-family: fangsong;
+    font-size: 15px!important;
+    color: #3c8dbc!important;
+}

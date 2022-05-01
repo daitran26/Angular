@@ -10,3 +10,7 @@
   height: 32px;
   padding:0 10px;
 }
+table td{
+  font-family: segoe UI;
+    font-weight: 500;
+}

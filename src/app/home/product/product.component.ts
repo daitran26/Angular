@@ -18,10 +18,10 @@ import { TokenService } from 'src/app/services/token.service';
   styleUrls: ['./product.component.css'],
 })
 export class ProductComponent implements OnInit {
-  public products: Product[] = [];
+  public products: any = [];
   tintucs:any;
-  iphone: Product[] = [];
-  xiaomi: Product[] = [];
+  iphone: any = [];
+  xiaomi: any = [];
   public categories: Category[] = [];
   searchText: string = '';
   public text: string = "đây là text ở component Product!!!";

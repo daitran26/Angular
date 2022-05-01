@@ -38,7 +38,7 @@ export class ProductComponent implements OnInit,OnDestroy, AfterViewInit {
     }
 }
 
-  getProds(page: number = 1, size: number = 3) {
+  getProds(page: number = 1, size: number = 4) {
     this.productService.getAllInPage(+page, +size).subscribe(page => {
             this.page = page;
         });

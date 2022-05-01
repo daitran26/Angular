@@ -1,5 +1,6 @@
 export enum OrderStatus {
-  "Mới",
+  "Chờ xác nhận",
   "Hoàn tất",
-  "Đã hủy"
+  "Đã hủy",
+  "Đã thanh toán"
 }

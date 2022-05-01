@@ -110,4 +110,14 @@ a{color:#464646}ul{margin-bottom:0}a:hover,a:focus,a:active{color:#77ca64;text-d
 .special-collection{
 	margin-top:0px;
 }
-
+.trai{
+  width: 30%;
+    border-right: 1px solid #c2c2c2;
+    margin-right: 15px;
+}
+.phai{
+  width:70%;
+}
+.phai .col-form-label{
+  color:#54b515!important;
+}

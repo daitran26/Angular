@@ -22,10 +22,11 @@
       <div class="col-xs-6 col-md-3 col-sm-6 " *ngFor="let product of page?.content">
         <div class="product-grid" id="product-1168979">
           <div class="image" style="height:180px;"> <a [routerLink]="['/product/product-detail',product.id]"><img [src]="product.image" title="{{product.title}}" alt="{{product.title}}" class="img-responsive"></a> </div>
+          <span *ngIf="product.discount > 0" style="font-size: 13px; font-weight: normal;position: absolute;top:0;right:15px;opacity: 0.75;" class="badge badge-danger ml-3">-{{product.discount}}%</span>
           <div class="info">
             <h3 class="name"><a [routerLink]="['/product/product-detail',product.id]">{{product.name}}</a></h3>
-            <p class="price-box"> <span class="special-price"> <span class="price product-price" style="text-decoration:line-through;"> {{product.price + 500000 | currency:'VND'}}</span></span> </p>
-            <p class="price-box"> <span class="special-price"> <span class="price product-price"> {{product.price | currency:'VND'}} </span></span> </p>
+            <p class="price-box"> <span class="special-price"> <span class="price product-price" style="text-decoration:line-through;"> {{product.price | currency:'VND'}}</span></span> </p>
+            <p class="price-box"> <span class="special-price"> <span class="price product-price"> {{product.price - product.price*product.discount/100 | currency:'VND'}} </span></span> </p>
             <p class="price-box">
               <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a>
               <a href="#"><img src="../../assets/Frontend/images/star.jpg"></a>
@@ -35,7 +36,8 @@
             </p>
             <div class="action-btn">
               <form>
-                <a (click)="addToCart(product)" class="button">Add to Cart</a>
+                <a *ngIf="product.soluong > 0" (click)="addToCart(product)" class="button">Add to Cart</a>
+                <button *ngIf="product.soluong == 0" [disabled]="true" class="btn btn-secondary btn-lg disabled">Hết hàng</button>
               </form>
             </div>
           </div>

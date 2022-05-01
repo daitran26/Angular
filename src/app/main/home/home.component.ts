@@ -1,8 +1,10 @@
-import { Component, OnInit,AfterViewInit } from '@angular/core';
+import { Component, OnInit,AfterViewInit, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Chart } from 'chart.js';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Order } from 'src/app/model/order';
 import { OrderService } from 'src/app/services/order.service';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-home',
@@ -22,10 +24,12 @@ export class HomeComponent implements OnInit {
   currentMonth:number = 0;
   product: any = [];
   product2:any = [];
-  constructor(private orderService: OrderService,private router:Router) {}
+  date:any = {};
+  constructor(private orderService: OrderService,private router:Router,private modalService: BsModalService) {}
 
   ngOnInit(): void {
     this.orderService.getAll().subscribe(data=>{
+      console.log(data)
       this.order = data;
       this.order2 = this.order.filter((order:any)=>{
         return order.orderStatus === 1
@@ -151,5 +155,58 @@ export class HomeComponent implements OnInit {
     });
     })
 
+  }
+  modalRef?: BsModalRef;
+
+  @ViewChild('template') deleteModal:any;
+  thongke:any = []
+  time = new Date();
+  tong:any = 0;
+  submit(){
+    this.thongke = []
+    this.orderService.getAll().subscribe(data=>{
+      console.log(data)
+    let dateOrder = data.filter((order:any)=>{
+      return order.orderStatus == 1 && +(new Date(order.updateTime)) >= +(new Date(this.date.tungay)) && +(new Date(order.updateTime)) <= +(new Date(this.date.denngay))
+    })
+    dateOrder.map((order:any)=>{
+      order.products.map((p:any)=>{
+        this.thongke.push(p);
+      })
+    })
+    console.log(this.thongke);
+    for(let x=0; x<this.thongke.length; x++){
+      for(let i= 0; i<this.thongke.length-1; i++) {
+        for(let j=i+1; j<this.thongke.length; j++){
+          if(this.thongke[i]?.id == this.thongke[j]?.id){
+            this.thongke[i].count += this.thongke[j]?.count
+            this.thongke.splice(j,1)
+          }
+        }
+      }
+    }
+    this.tong = dateOrder.reduce((total:any, curr:any)=> total + curr.orderAmount,0);
+    console.log(this.tong);
+  })
+  this.openModal()
+  }
+  openModal() {
+    this.modalRef = this.modalService.show(this.deleteModal, {class: 'modal-lg'});
+  }
+  decline(): void {
+    this.modalRef?.hide();
+  }
+  fileName= 'ExcelSheet.xlsx';
+  exportexcel(){
+    /* pass here the table id */
+    let element = document.getElementById('excel-table');
+    const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+
+    /* generate workbook and add the worksheet */
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+    /* save to file */
+    XLSX.writeFile(wb, this.fileName);
   }
 }

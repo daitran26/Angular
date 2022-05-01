@@ -32,7 +32,7 @@ export class AuthService {
     return this.http.put<ChangeAvatar>(this.CHANGE_AVATAR,avatar);
   }
 
-  signUp(signUpForm:SignUpForm):Observable<any>{
+  signUp(signUpForm:any):Observable<any>{
     return this.http.post<any>(this.SIGN_UP,signUpForm);
   }
   getUser(username:any):Observable<any>{
@@ -69,5 +69,8 @@ export class AuthService {
   }
   update(id:number,user:any):Observable<any>{
     return this.http.put<any>(`${environment.urlAPI}/api/auth/change-role/${id}`,user).pipe();
+  }
+  usercode(code:any):Observable<any>{
+    return this.http.get<any>(`${environment.urlAPI}/api/auth/usercode/${code}`);
   }
 }

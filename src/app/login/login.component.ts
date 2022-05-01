@@ -42,7 +42,8 @@ export class LoginComponent implements OnInit {
         this.tokenService.setAvatar(data.avatar);
         this.tokenService.setRoles(data.roles);
         this.tokenService.setUser(data.user);
-        console.log(data.roles[0].authority);//authority
+        // console.log(data)
+        console.log(data.roles[0]?.authority);//authority
         if(data.roles[0].authority == 'USER'){
           this.router.navigate(['/']).then(() => {window.location.reload();})
         }

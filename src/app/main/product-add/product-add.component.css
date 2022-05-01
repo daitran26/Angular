@@ -11,3 +11,11 @@ textarea,input{
   font-size: 14px;
   font-family: "Helvetica Neue",Helvetica,Arial;
 }
+form .form-group label{
+  font-family: fangsong;
+    font-size: 15px!important;
+    color: #3c8dbc!important;
+}
+.soluong .form-group + .form-group{
+  margin: 0 20px;
+}
