@@ -30,7 +30,7 @@ export class UserComponent implements OnInit {
     }
 }
 
-  getProds(page: number = 1, size: number = 4) {
+  getProds(page: number = 1, size: number = 6) {
     this.authService.pageUser(+page, +size)
         .subscribe(page => {
             this.page = page;

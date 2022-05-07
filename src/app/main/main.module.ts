@@ -23,6 +23,8 @@ import { UserComponent } from './user/user/user.component';
 import { UserAddComponent } from './user/user-add/user-add.component';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { HomeComponent } from './home/home.component';
+import { BanchayComponent } from './thongke/banchay/banchay.component';
+import { TonkhoComponent } from './thongke/tonkho/tonkho.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { HomeComponent } from './home/home.component';
     UserComponent,
     UserAddComponent,
     UserEditComponent,
-    HomeComponent
+    HomeComponent,
+    BanchayComponent,
+    TonkhoComponent
   ],
   imports: [
     CommonModule,

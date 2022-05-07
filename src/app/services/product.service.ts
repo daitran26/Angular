@@ -11,7 +11,7 @@ export class ProductService {
   private urlAPI = environment.urlAPI;
   constructor(private http: HttpClient) { }
 
-  getListProducts():Observable<Product[]>{
+  getListProducts():Observable<any[]>{
     return this.http.get<any>(`${this.urlAPI}/api/product/all`).pipe();
   }
   getProductById(id:number):Observable<any>{
@@ -23,6 +23,10 @@ export class ProductService {
   pageProduct(params:any){
     // const params = resquest; //params là biến cố định
     return this.http.get<any>(`${this.urlAPI}/api/product/page`,{params}).pipe();
+  }
+  pageProduct1(params:any){
+    // const params = resquest; //params là biến cố định
+    return this.http.get<any>(`${this.urlAPI}/api/product/page1`,{params}).pipe();
   }
   addProduct(product: Product):Observable<Product>{
     return this.http.post<any>(`${this.urlAPI}/api/product/add`,product).pipe();

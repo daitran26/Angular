@@ -17,6 +17,8 @@ import { UserComponent } from './user/user/user.component';
 import { UserAddComponent } from './user/user-add/user-add.component';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { HomeComponent } from './home/home.component';
+import { TonkhoComponent } from './thongke/tonkho/tonkho.component';
+import { BanchayComponent } from './thongke/banchay/banchay.component';
 export const mainRoutes:Routes = [
     {
         path: '', component:MainComponent,
@@ -37,6 +39,8 @@ export const mainRoutes:Routes = [
             {path: 'user',component:UserComponent},
             {path: 'user-add',component:UserAddComponent},
             {path: 'user/:id',component:UserEditComponent},
+            {path: 'banchay',component:BanchayComponent},
+            {path: 'tonkho',component:TonkhoComponent},
         ]
     },
 ]

@@ -1,18 +1,17 @@
-<h4 style="font-weight: bold;font-family: auto;color: #0183bf;border-bottom: solid 1px #ebebeb;" class="display-5 mb-5">Đơn hàng của bạn</h4>
+<h4 style="font-family: auto;color: #0183bf;border-bottom: solid 1px #ebebeb;" class="display-5 mb-5">Đơn hàng của bạn</h4>
 
-<table *ngIf="page?.content.length > 0; else empty" class="table table-bordered text-center">
+<table *ngIf="page?.content.length > 0; else empty" class="table text-center table-hover">
     <thead>
-    <tr style="background: #0183bf;
-    color: white;">
-        <th scope="col">Order #</th>
-        <th scope="col">Tên khách hàng</th>
-        <th scope="col">Email</th>
-        <th scope="col">Số điện thoại</th>
-        <th scope="col">Địa chỉ giao hàng</th>
-        <th scope="col">Tổng tiền</th>
-        <th scope="col">Ngày đặt</th>
-        <th scope="col">Tình trạng</th>
-        <th scope="col">Hành động</th>
+    <tr style="background: #0183bf;color: white;">
+        <td scope="col">Order #</td>
+        <td scope="col">Tên khách hàng</td>
+        <td scope="col">Email</td>
+        <td scope="col">Số điện thoại</td>
+        <td scope="col">Địa chỉ giao hàng</td>
+        <td scope="col">Tổng tiền</td>
+        <td scope="col">Ngày đặt</td>
+        <td scope="col">Tình trạng</td>
+        <td scope="col">Hành động</td>
     </tr>
     </thead>
     <tbody>

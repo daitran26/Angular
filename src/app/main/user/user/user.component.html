@@ -2,19 +2,19 @@
 <div class="panel panel-success">
   <div class="panel-heading">Danh sách user</div>
   <div class="panel-body">
-      <table class="table table-striped">
+      <table class="table table-hover">
           <tr>
-              <th>Avatar</th>
-              <th>Tên</th>
-              <th>Email</th>
-              <th>Số điện thoại</th>
-              <th>Địa chỉ</th>
-              <th>Vai trò</th>
-              <th style="width:200px;">Action</th>
+              <td>Avatar</td>
+              <td>Tên người dùng</td>
+              <td>Email</td>
+              <td>Số điện thoại</td>
+              <td>Địa chỉ</td>
+              <td>Vai trò</td>
+              <td style="width:200px;">Action</td>
           </tr>
           <tbody>
             <tr *ngFor="let cate of page?.content">
-              <td><img style="width:50px;height: 50px;border-radius: 50%;" src="{{cate.avatar}}" alt=""></td>
+              <td><img style="width:40px;height: 40px;border-radius: 50%;" src="{{cate.avatar}}" alt=""></td>
               <td style="padding-left: 20px;">{{cate.name}}</td>
               <td>{{cate.email}}</td>
               <td>{{cate.phone}}</td>

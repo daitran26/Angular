@@ -1,0 +1,28 @@
+
+  <div class="row">
+    <div class="col-sm-6">
+      <h3 style="font-family: emoji; font-size: 21px;font-weight: 600;color: #367fa9;margin: 20px 0;" class="text-left">Top 5 sản phẩm bán chạy</h3>
+      <mat-card>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <td scope="col">#</td>
+            <td>Ảnh</td>
+            <td scope="col">Tên sản phẩm</td>
+            <td scope="col">Số lượng bán</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let x of product2;let i = index">
+            <th scope="row">{{i+1}}</th>
+            <td><img src="{{x.image}}" alt="" height="40"></td>
+            <td>{{x.name}}</td>
+            <td>{{x.count}}</td>
+            <td>{{x.category?.name}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-card>
+    </div>
+  <div style="margin-top:5%" class="col-sm-6"><mat-card><canvas width="700" height="500" id="chart-line"></canvas></mat-card></div>
+</div>

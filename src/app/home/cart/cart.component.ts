@@ -141,7 +141,7 @@ checkout() {
             purchase_units: [{
                 amount: {
                     currency_code: 'USD',
-                    value: (this.total/23000).toFixed(2).toString(),
+                    value: (this.total/23000).toFixed(2).toString(), //(this.total/23000).toFixed(2).toString()
                     breakdown: {
                         item_total: {
                             currency_code: 'USD',

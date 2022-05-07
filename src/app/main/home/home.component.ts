@@ -131,28 +131,6 @@ export class HomeComponent implements OnInit {
           }
         }
       });
-      var myLineChart = new Chart("chart-line", {
-        type: 'polarArea',
-        data: {
-            labels: title,
-            datasets: [{
-                data: count1,
-                backgroundColor: [
-                  "rgba(255, 0, 0, 0.5)",
-                  "rgba(100, 255, 0, 0.5)",
-                  "rgba(200, 50, 255, 0.5)",
-                  "rgba(0, 100, 255, 0.5)",
-                  "rgba(255, 206, 86, 0.5)",
-                ]
-            }]
-        },
-        options: {
-            title: {
-                display: false,
-                text: 'Weather'
-            }
-        }
-    });
     })
 
   }

@@ -1,68 +1,83 @@
-<h1 align="center" class="display-4 mb-5">Giỏ hàng</h1>
+<h1 style="color: #0183bf;font-weight: bold;font-family: ui-monospace;font-size: 26px;" align="center" class="display-4 mb-5">Giỏ hàng</h1>
 
 <!--Cart Detail Table-->
-<table class="table table-bordered text-center" *ngIf="productsInOrder?.length > 0; else empty">
-    <thead>
-    <tr style="background: #0183bf;
-    color: white;">
-      <th>#</th>
-        <th scope="col">Ảnh</th>
-        <th scope="col">Tên sản phẩm</th>
-        <th scope="col">Giá</th>
-        <th scope="col">Số lượng</th>
-        <th scope="col">Thành tiền</th>
-        <th scope="col"></th>
+<div class="container" *ngIf="productsInOrder?.length > 0; else empty">
+  <div class="row">
+    <div class="col-sm-9">
+      <table class="table table-bordered text-center">
+        <thead>
+        <tr style="background: #0183bf;
+        color: white;">
+          <th>#</th>
+            <td scope="col">Ảnh</td>
+            <td scope="col">Tên sản phẩm</td>
+            <td scope="col">Giá</td>
+            <td scope="col">Số lượng</td>
+            <td scope="col">Thành tiền</td>
+            <td scope="col"></td>
 
-    </tr>
-    </thead>
-    <tbody>
+        </tr>
+        </thead>
+        <tbody>
 
-    <tr *ngFor="let productInOrder of productsInOrder;let i = index">
-      <th>{{i+1}}</th>
-        <th class="align-middle" scope="row">
-            <a routerLink="/product/product-detail/{{productInOrder.id}}"><img height="70px"
-                                                                       src="{{productInOrder.image}}"
-                                                                       alt="{{productInOrder.name}}"></a>
-        </th>
-        <td class="align-middle"><a style="font-size: 14px;color: black"
-                routerLink="/product/product-detail/{{productInOrder.id}}">{{productInOrder.name}}</a></td>
-        <td class="align-middle">{{productInOrder.price | currency:'VND'}}</td>
+        <tr *ngFor="let productInOrder of productsInOrder;let i = index">
+          <th>{{i+1}}</th>
+            <th class="align-middle" scope="row">
+                <a routerLink="/product/product-detail/{{productInOrder.id}}"><img height="70px"
+                                                                           src="{{productInOrder.image}}"
+                                                                           alt="{{productInOrder.name}}"></a>
+            </th>
+            <td class="align-middle"><a style="font-size: 14px;color: black"
+                    routerLink="/product/product-detail/{{productInOrder.id}}">{{productInOrder.name}}</a></td>
+            <td class="align-middle">{{productInOrder.price | currency:'VND'}}</td>
 
-        <td class="align-middle">
-            <a (click)="minusOne(productInOrder)" class="nut"><i class="fa fa-minus"></i></a>
-            <input min="1" id="{{productInOrder.productId}}"
-                   [max]=productInOrder.productStock
-                   [(ngModel)]="productInOrder.count"
-                   (change)="onChange(productInOrder)"
-                   size="5"
-                   type="number"
-                   required
-                   name='count'
-                   style="font-size: 17px;width: 50px;"
-                   >
-            <a (click)="addOne(productInOrder)" class="nut"> <i class="fa fa-plus"></i></a>
-        </td>
+            <td class="align-middle">
+                <a (click)="minusOne(productInOrder)" class="nut"><i class="fa fa-minus"></i></a>
+                <input min="1" id="{{productInOrder.productId}}"
+                       [max]=productInOrder.productStock
+                       [(ngModel)]="productInOrder.count"
+                       (change)="onChange(productInOrder)"
+                       size="5"
+                       type="number"
+                       required
+                       name='count'
+                       style="font-size: 17px;width: 50px;"
+                       >
+                <a (click)="addOne(productInOrder)" class="nut"> <i class="fa fa-plus"></i></a>
+            </td>
 
-        <td class="align-middle" style="font-size: 14px;font-weight: bold;color:rgba(38, 0, 255, 0.692);">{{productInOrder.price * productInOrder.count|currency:'VND'}}</td>
-        <td class="align-middle">
-            <a title="Xóa khỏi giỏ hàng" (click)="remove(productInOrder)" routerLink="./"><i style="font-size: 14px;color: green;background:rgb(247 241 241);padding:7px;" class="fas fa-trash-alt"></i></a>
-        </td>
-    </tr>
-    </tbody>
-</table>
-
-<div *ngIf="productsInOrder?.length > 0; else empty">
+            <td class="align-middle" style="font-size: 14px;font-weight: bold;color:rgba(38, 0, 255, 0.692);">{{productInOrder.price * productInOrder.count|currency:'VND'}}</td>
+            <td class="align-middle">
+                <a title="Xóa khỏi giỏ hàng" (click)="remove(productInOrder)" routerLink="./"><i style="font-size: 14px;color: green;background:rgb(247 241 241);padding:7px;" class="fas fa-trash-alt"></i></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
     <a style="font-size: 14px;" class="btn btn-info ml-4" routerLink="/product/category/all"><i class="fas fa-undo-alt mr-2"></i>Tiếp tục mua hàng</a>
-    <h5 class="float-right" style="display: inline;font-size: 16px;font-weight: 600;color:rgb(66, 66, 196);">Tổng tiền: {{total | currency:'VND'}}</h5>
-    <br>
-    <div style="width:250px;display: inline-block;margin-top: 17px;">
-      <p style="font-family: serif;font-size: 17px;">Thanh toán online với</p>
-      <ngx-paypal [config]="payPalConfig"></ngx-paypal>
     </div>
-    <div style="width: 361px; float: right;margin-top: 24px;">
-      <p style="font-family: serif;font-size: 17px;">Hoặc thanh toán khi nhận hàng</p>
-    <button (click)="checkout()" class="btn btn-info float-right btn-lg"><i class="fas fa-check mr-3"></i>Đặt hàng ngay</button>
+    <div class="col-sm-3" style="border:1px solid rgb(202, 202, 202);padding:10px;border-radius: 5px;background: #dcdcdc6e;box-shadow: 5px -3px 4px 0px #ede9e9cc;">
+      <div><span style="font-size: 17px;font-family: auto;font-weight: bold;color: #0183bf;">Tạm tính</span><span style="font-size: 17px;
+    font-weight: bold;
+    font-family: auto;" class="float-right">{{total | currency:'VND'}}</span></div>
+      <div style="border-bottom: 1px solid #cdc7c7;"><span style="font-size: 17px;font-family: auto;font-weight: bold;color: #0183bf;">Giảm giá</span><span style="    font-size: 17px;
+    font-weight: bold;
+    font-family: auto;" class="float-right">0đ</span></div>
+      <br>
+      <div><span style="font-size: 17px;font-family: auto;font-weight: bold;color: #0183bf;">Tổng tiền</span><span style="font-size: 17px;
+        font-weight: bold;color: #e30f0f;font-family: auto;" class="float-right">{{total | currency:'VND'}}</span>
+      <span style="float: right;font-family: emoji;font-size: 14px;color: gray;">(Đã bao gồm VAT nếu có)</span>
+      </div>
+      <br>
+      <div style="width:250px;display: inline-block;margin-top: 17px;">
+        <p style="font-family: serif;font-size: 17px;">Thanh toán online với</p>
+        <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+      </div>
+      <div>
+        <p style="font-family: serif;font-size: 17px;">Hoặc thanh toán khi nhận hàng</p>
+      <button style="width:100%;" (click)="checkout()" class="btn btn-info float-right btn-lg"><i class="fas fa-check mr-3"></i>Đặt hàng ngay</button>
+      </div>
     </div>
+  </div>
 </div>
 <ng-template #empty>
     <h4 class="text-muted text-center"><img routerLink="/product/category/all" style="width: 61%;cursor: pointer;" src="https://cdn.dribbble.com/users/1010436/screenshots/11302442/empty_cart.jpg" alt=""></h4>
