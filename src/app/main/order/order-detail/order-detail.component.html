@@ -1,33 +1,30 @@
 <h1 class="display-4 mb-5" style="font-weight: bold;">CHI TIẾT ĐƠN HÀNG</h1>
-<mat-card>
+<mat-card style="padding-bottom: 35px;">
 
-<table class="table table-bordered text-center">
+<table class="table table-hover text-center">
     <thead>
     <tr style="background: #0183bf;
     color: white;">
     <th>#</th>
-        <th scope="col">Ảnh</th>
-        <th scope="col">Tên sản phẩm</th>
-        <th scope="col">Giá</th>
-        <th scope="col">Số lượng</th>
-        <th scope="col">Thành tiền</th>
-
+        <td scope="col">Ảnh</td>
+        <td scope="col">Tên sản phẩm</td>
+        <td scope="col">Giá</td>
+        <td scope="col">Số lượng</td>
+        <td scope="col">Thành tiền</td>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let item of (order$ | async)?.products; let i = index">
       <td>{{i+1}}</td>
         <th class="align-middle" scope="row">
-            <a routerLink="/seller/product/{{item.productId}}/edit"><img height="70px" src="{{item.image}}"
-                                                                         alt="{{item.name}}"></a>
+            <a routerLink="/seller/product/{{item.productId}}/edit"><img height="50px" src="{{item.image}}" alt="{{item.name}}"></a>
         </th>
-        <td class="align-middle"><a routerLink="/seller/product/{{item.id}}/edit">{{item.name}}</a></td>
+        <td class="align-middle">{{item.name}}</td>
         <td class="align-middle">{{item.price | currency:'VND'}}</td>
         <td class="align-middle">{{item.count}}</td>
         <td class="align-middle">{{(item.price * item.count | currency:'VND')}}</td>
     </tr>
     </tbody>
 </table>
-
+<h5 class="float-right tien">Tổng tiền: {{(order$ | async)?.orderAmount | currency:'VND'}}</h5>
 </mat-card>
-<h5 style="display: inline;margin-right: 20px;font-size: 21px;font-weight: 600;color: blue;" class="float-right">Tổng tiền: {{(order$ | async)?.orderAmount | currency:'VND'}}</h5>

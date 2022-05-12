@@ -75,7 +75,13 @@ export class CartComponent implements OnInit, OnDestroy,AfterContentChecked {
 }
 
   onChange(productInOrder:any) {
-    this.updateTerms.next(productInOrder);
+    this.productService.getProductById(productInOrder.id).subscribe(data=>{
+      if(productInOrder.count > data.soluong){
+        this.alertService.error("Sản phẩm không còn đủ số lượng",{autoClose: true})
+        productInOrder.count = 1;
+      }
+      this.updateTerms.next(productInOrder);
+    })
 }
 
 err :any = {

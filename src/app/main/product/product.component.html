@@ -1,13 +1,19 @@
 <a class="btn btn-outline-success btn-lg mb-3" [routerLink]="['product-add']"><i class="fas fa-plus-circle mr-2"></i>Thêm sản phẩm</a>
 <div class="panel panel-info">
+  <div class="input-group mb-3" style="width:200px;">
+    <input class="tim" (keyup)="search($event)" name="searchText" style="font-size:14px; border: none; border-bottom: 1px solid #3c8dbc;color: #888686;font-family: auto;" type="text" class="form-control" placeholder="Tên sản phẩm...">
+  </div>
   <div class="panel-heading">Danh sách sản phẩm</div>
   <div class="panel-body">
-<table class="table table-bordered table-hover">
+<table class="table table-hover">
     <thead>
       <tr>
         <th scope="col">ID</th>
         <th scope="col">Ảnh</th>
-        <th scope="col">Tên sản phẩm</th>
+        <th (click)="sort()" scope="col">Tên sản phẩm
+          <i *ngIf="sapxep" style="font-size:15px;opacity: 0.8;cursor: pointer;" class="fas fa-sort-alpha-up"></i>
+          <i *ngIf="!sapxep" style="font-size:15px;opacity: 0.8;cursor: pointer;" class="fas fa-sort-alpha-down-alt"></i>
+        </th>
         <th scope="col">Giá</th>
         <th scope="col">Số lượng</th>
         <th scope="col">Discount(%)</th>
@@ -17,7 +23,7 @@
     <tbody>
       <tr *ngFor="let product of page?.content">
         <th scope="row">{{product.id}}</th>
-        <td><img style="border-radius: 10px;" src="{{product.image}}" alt="image" width="60"/></td>
+        <td><img style="border-radius: 10px;" src="{{product.image}}" alt="image" width="50"/></td>
         <td style="font-family: system-ui; font-size: 14px;">{{product.name}}</td>
         <td style="font-family: system-ui; font-size: 14px;">{{product.price | currency:'VND'}}</td>
         <td style="font-family: system-ui; font-size: 14px;">{{product.soluong}}</td>

@@ -75,4 +75,19 @@ export class ProductComponent implements OnInit,OnDestroy, AfterViewInit {
   onClick(){
     this.alertService.success('Xóa thành công!',this.options);
   }
+  search(event:any){
+    this.productService.searchPage(1,4,event.target.value).subscribe(data =>{
+      this.page = data;
+    })
+  }
+  sapxep:boolean=true;
+  sort(){
+    this.sapxep = !this.sapxep;
+    if(this.sapxep){
+      this.productService.pageAndSort(1,4,"name","ASC").subscribe(data =>this.page = data)
+    }
+    else{
+      this.productService.pageAndSort(1,4,"name","DESC").subscribe(data =>this.page = data)
+    }
+  }
 }
