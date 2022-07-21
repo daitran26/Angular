@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Product } from 'src/app/model/product';
 import { ProductInOrder } from 'src/app/model/productinorder';
 import { CartItemService } from 'src/app/services/cart-item.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -8,8 +7,7 @@ import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-product-detail',
-  templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.css']
+  templateUrl: './product-detail.component.html'
 })
 export class ProductDetailComponent implements OnInit {
   product:any;

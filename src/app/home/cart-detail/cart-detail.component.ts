@@ -4,8 +4,7 @@ import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-cart-detail',
-  templateUrl: './cart-detail.component.html',
-  styleUrls: ['./cart-detail.component.css']
+  templateUrl: './cart-detail.component.html'
 })
 export class CartDetailComponent implements OnInit {
 

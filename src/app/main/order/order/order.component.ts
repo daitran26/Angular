@@ -164,7 +164,6 @@ public create(): Document {
             }),
           ]
         }),
-        // ...this.createAchivementsList(this.orderDetail),
       ]
     }]
   });
@@ -201,7 +200,6 @@ public createAchivementsList(achivements: any[]): TableRow[] {
           ]
         }),
       ]
-        // text: `${achievement[value]}`,
       })
   );
 }
@@ -210,7 +208,6 @@ download(){
   Packer.toBlob(doc).then(blob => {
     console.log(blob);
     saveAs(blob, "example.docx");
-    console.log("Document created successfully");
   });
 }
 orderDetail:any = []
@@ -223,7 +220,6 @@ print(id:any){
     Packer.toBlob(doc).then(blob => {
     console.log(blob);
     saveAs(blob, "example.docx");
-    console.log("Document created successfully");
   });
   })
 }

@@ -30,7 +30,7 @@ import { ResetPasswordComponent } from './resetpassword/reset-password/reset-pas
 import { VerifyResetPasswordComponent } from './resetpassword/verify-reset-password/verify-reset-password.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { NgxSpinnerModule } from 'ngx-spinner';
-// import { NgxSpinnerModule } from "ngx-spinner";
+
 @NgModule({
   declarations: [
     AppComponent,

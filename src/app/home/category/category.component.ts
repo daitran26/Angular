@@ -6,8 +6,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { DataShareService } from 'src/app/services/data-share.service';
 @Component({
   selector: 'app-category',
-  templateUrl: './category.component.html',
-  styleUrls: ['./category.component.css']
+  templateUrl: './category.component.html'
 })
 export class CategoryComponent implements OnInit {
   public categories: Category[] = [];

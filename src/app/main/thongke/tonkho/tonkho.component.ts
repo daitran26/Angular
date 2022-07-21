@@ -5,8 +5,7 @@ import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-tonkho',
-  templateUrl: './tonkho.component.html',
-  styleUrls: ['./tonkho.component.css']
+  templateUrl: './tonkho.component.html'
 })
 export class TonkhoComponent implements OnInit {
   product:any = [];
