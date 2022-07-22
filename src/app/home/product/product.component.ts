@@ -1,16 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Cart } from 'src/app/model/cart';
 import { Category } from 'src/app/model/category';
-import { Product } from 'src/app/model/product';
 import { ProductInOrder } from 'src/app/model/productinorder';
 import { CartItemService } from 'src/app/services/cart-item.service';
+import { TintucService } from 'src/app/services/tintuc.service';
+import { TokenService } from 'src/app/services/token.service';
 import { DataShareService } from '../../services/data-share.service';
 import { ProductService } from '../../services/product.service';
-import { OwlOptions } from 'ngx-owl-carousel-o';
-import { TintucService } from 'src/app/services/tintuc.service';
-import { TinTuc } from 'src/app/model/tintuc';
-import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-product',

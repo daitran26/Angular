@@ -4,7 +4,6 @@ import { Subscription } from 'rxjs';
 import { ProductInOrder } from 'src/app/model/productinorder';
 import { CartItemService } from 'src/app/services/cart-item.service';
 import { CategoryService } from 'src/app/services/category.service';
-import { DataShareService } from 'src/app/services/data-share.service';
 import { ProductService } from 'src/app/services/product.service';
 import { TokenService } from 'src/app/services/token.service';
 
@@ -28,7 +27,6 @@ export class ProductCategoryComponent implements OnInit,OnDestroy {
   constructor(private productService: ProductService,
     private activatedRoute:ActivatedRoute,
     private categoryService: CategoryService,
-    private dataShareService: DataShareService,
     private cartItemService: CartItemService,
     private tokenService:TokenService,
     private router:Router) { }

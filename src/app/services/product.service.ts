@@ -82,4 +82,5 @@ export class ProductService {
     const url = `${this.urlAPI}/api/product/${id}`;
       return this.http.put<any>(url,product).pipe();
   }
+  
 }

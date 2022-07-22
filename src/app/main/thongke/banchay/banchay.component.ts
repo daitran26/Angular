@@ -5,8 +5,7 @@ import { OrderService } from 'src/app/services/order.service';
 
 @Component({
   selector: 'app-banchay',
-  templateUrl: './banchay.component.html',
-  styleUrls: ['./banchay.component.css']
+  templateUrl: './banchay.component.html'
 })
 export class BanchayComponent implements OnInit {
   order:any = [];

@@ -6,8 +6,7 @@ import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-change-avatar',
-  templateUrl: './change-avatar.component.html',
-  styleUrls: ['./change-avatar.component.css']
+  templateUrl: './change-avatar.component.html'
 })
 export class ChangeAvatarComponent implements OnInit {
   form:any = {}

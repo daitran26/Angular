@@ -42,8 +42,7 @@ export class LoginComponent implements OnInit {
         this.tokenService.setAvatar(data.avatar);
         this.tokenService.setRoles(data.roles);
         this.tokenService.setUser(data.user);
-        // console.log(data)
-        console.log(data.roles[0]?.authority);//authority
+        console.log(data.roles[0]?.authority);
         if(data.roles[0].authority == 'USER'){
           this.router.navigate(['/']).then(() => {window.location.reload();})
         }
@@ -63,7 +62,6 @@ export class LoginComponent implements OnInit {
       this.isLogged = true;
       const tokenDto = new TokenDto(this.socialUser.idToken);
       this.authService.loginGoogle(tokenDto).subscribe(data=>{
-        console.log(data)
         this.checkAccount = true;
         this.tokenService.setToken(data.token);
         this.tokenService.setName(data.name);

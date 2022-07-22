@@ -1,5 +1,5 @@
-import { Component, OnDestroy, OnInit,AfterContentChecked, DoCheck, AfterViewChecked } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { AfterContentChecked, Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -15,16 +15,7 @@ export class SearchComponent implements OnInit,OnDestroy,AfterContentChecked{
   keyword = '';
   private querySub!: Subscription;
   constructor(private productService: ProductService,
-              private activatedRoute:ActivatedRoute,
-              private router: Router) {
-              //   router.events.subscribe((val) => {
-              //     if (val instanceof NavigationEnd){
-              //       this.keyword = this.activatedRoute.snapshot.queryParamMap.get('keyword') ?? '';
-              //       this.getProds(1,4,this.keyword);
-              //       console.log('first')
-              //   }
-              // });
-              }
+              private activatedRoute:ActivatedRoute) {}
 
   ngOnInit(): void {
     this.querySub = this.activatedRoute.queryParams.subscribe(() => {

@@ -5,8 +5,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-upload-avatar',
-  templateUrl: './upload-avatar.component.html',
-  styleUrls: ['./upload-avatar.component.css']
+  templateUrl: './upload-avatar.component.html'
 })
 export class UploadAvatarComponent implements OnInit {
   selectedFile!:File;
